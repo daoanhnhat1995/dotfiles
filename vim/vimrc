@@ -54,67 +54,38 @@ filetype plugin indent on
 
 
 " System settings
-
 syntax on
 
+" Color theme  settings
 syntax enable 
 let g:solarized_termtrans = 1
-
 set background=dark
 colorscheme solarized
 
-"Enable commandline complete
-set wildmenu
-
+set wildmenu            "Enable commandline complete
 set noeol
+set binary              " Dont add empty new line
+set modeline            " Respect modeline in files
 
-"Dont add empty new line
-set binary
 
-" Respect modeline in files
-set modeline
 
-set cursorline
-
-" Make tabs as wide as two spaces
-set tabstop=2
-
-set noexpandtab
-
-" Highlight searches
-" set hlsearch
 set modelines=4
-
-" Ignore case of searches
-set ignorecase
-" Highlight dynamically as pattern is typed
-set incsearch
-" Always show status line
-set laststatus=2
-" Enable mouse in all modes
-set mouse=a
-" Disable error bells
-set noerrorbells
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-" Show the cursor position
-set ruler
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-" Show the current mode
-set showmode
-" Show the filename in the window titlebar
-set title
-" Show the (partial) command as it’s being typed
-set showcmd
-set smartindent
-set cursorline
+set ignorecase          " Ignore case of searches
+set incsearch           " Highlight dynamically as pattern is typed
+set mouse=a             " Enable mouse in all modes
+set noerrorbells        " Disable error bells
+set nostartofline       " Don’t reset cursor to start of line when moving around.
+set shortmess=atI       " Don’t show the intro message when starting Vim
+set showmode            "Show the current mode
+set title               "Show the filename in the window titlebar
+set showcmd             "Show the (partial) command as it’s being typed
 
 " Use relative line numbers
 if exists("&relativenumber")
 	set relativenumber
 	au BufReadPost * set relativenumber
 endif
+
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
@@ -122,28 +93,42 @@ set clipboard=unnamed
 
 "-----------------------"
 " Key bindings "
+nnoremap <c-p> :CtrlP<CR>           " Map keys for CtrlP fuzzy search
 
-nnoremap <c-p> :CtrlP<CR>
-
+" File management settings
+set nowritebackup 
+set noswapfile                      " Don't use swap files
+set history=1000
+set undolevels=1000
 
 set syntax=html
-set noswapfile
-set backspace=2
-set nowritebackup
 set ruler
 set showcmd
-set laststatus=2
 set autowrite
 
-set noexpandtab
-set copyindent
+
+" Indentation rules
+set expandtab
+set backspace=2                       
 set preserveindent
 set softtabstop=0
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
+set smarttab
+set smartindent
 
-set wildmode=list:longest,list:full
+set noerrorbells visualbell t_vb=             
+set wildmode=list:longest,list:full		" Show list of files instead of autocomplete
 
+" Line settings
+set number                            " Show line number
+set cursorline                        " Highlight current line
+
+
+" Tab completion
+" Will insert tab at beginning of line
+" will use completion if not at beginning
+" source: https://github.com/thoughtbot/dotfiles/blob/master/vimrc
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
@@ -152,4 +137,10 @@ function! InsertTabWrapper()
         return "\<c-p>"
     endif
 endfunction
+
+" Open new split panes to right and bottom
+set splitbelow
+set splitright
+
+
 
