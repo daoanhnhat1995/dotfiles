@@ -1,7 +1,6 @@
 " Unlink vi
 set nocompatible
 
-filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -31,6 +30,13 @@ Plugin 'tpope/vim-endwise'
 " Utilities for Rails development
  Plugin 'tpope/vim-rails'
 
+" Utilities for Go lang
+ Plugin 'fatih/vim-go'
+
+" html helpers
+Plugin 'mattn/emmet-vim'
+
+
 " Fuzzy file, buffer, mru and tag finder
 Plugin 'kien/ctrlp.vim'
 
@@ -49,7 +55,9 @@ Bundle 'davidhalter/jedi-vim'
 
 call vundle#end()            
 
-filetype plugin indent on 
+filetype on
+filetype plugin on 
+filetype indent on 
 
 
 
@@ -101,7 +109,6 @@ set noswapfile                      " Don't use swap files
 set history=1000
 set undolevels=1000
 
-set syntax=html
 set ruler
 set showcmd
 set autowrite
