@@ -81,14 +81,15 @@ Plugin 'tpope/vim-endwise'
 
  " Start scrolling three lines before the horizontal window border
  set scrolloff=3
- 
  set clipboard=unnamed
 
  " ---------------------------------------------------------------
  "  File management settings 
  "  --------------------------------------------------------------
  set nowritebackup 
- set noswapfile                      " Don't use swap files
+
+ " Don't use swap files
+ set noswapfile                      
  set history=1000
  set undolevels=1000
 
@@ -115,9 +116,11 @@ Plugin 'tpope/vim-endwise'
  
  " Done add empty new lines
  set binary              
- set modeline            " Respect modeline in files
+ " Respect modeline in files
+ set modeline            
  set modelines=4
- set title               "Show the filename in the window titlebar
+ "Show the filename in the window titlebar
+ set title               
 
  " X spaces for each tab
  set tabstop=2
@@ -157,5 +160,6 @@ Plugin 'tpope/vim-endwise'
 
  "let g:user_emmet_leader_key='<C-Z>'       " Map emmet from <C-Y> to <C-Z>
  nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
- 
 
+ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|tmp|ico|git|svn))$'
+ 
