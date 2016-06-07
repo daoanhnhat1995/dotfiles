@@ -20,134 +20,142 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 " Automatically insert 'end' for ruby methods
 Plugin 'tpope/vim-endwise'
 
-" Comment
- Plugin 'tomtom/tcomment_vim'
+ Plugin 'tomtom/tcomment_vim'               " Comment a paragraph helper
 
-" Utilities for common commands, adding or moving lines,
-" encoding/decoding...
- Plugin 'tpope/vim-unimpaired'
+ Plugin 'tpope/vim-unimpaired'              " Utilities for common commands, adding or moving lines, encoding/decoding...
 
-" Utilities for Rails development
- Plugin 'tpope/vim-rails'
+ Plugin 'kien/ctrlp.vim'                     " Fuzzy file, buffer, mru and tag finder
 
-" Utilities for Go lang
- Plugin 'fatih/vim-go'
+ Plugin 'bling/vim-airline'                  " Vim airline status line
 
-" html helpers
-Plugin 'mattn/emmet-vim'
+ Plugin 'tpope/vim-rake'                     " Utilies for Rake projets
 
+ Plugin 'scrooloose/nerdtree'
 
-" Fuzzy file, buffer, mru and tag finder
-Plugin 'kien/ctrlp.vim'
+ Plugin 'nono/vim-handlebars'
 
-"Vim airline status line
-Plugin 'bling/vim-airline'
+ Plugin 'scrooloose/nerdcommenter'
 
- " Utilies for Rake projets
-Plugin 'tpope/vim-rake'
+ " ------Autocomplete ------------"
+ Plugin 'honza/vim-snippets'
+  
+ " ------Language support plugins-- "
+ 
+ Plugin 'tpope/vim-rails'                   " Utilities for Rails development
 
-Plugin 'scrooloose/nerdtree'
+ Plugin 'fatih/vim-go'                      " Utilities for Go lang
+ 
+ Plugin 'mattn/emmet-vim'
 
-Plugin 'nono/vim-handlebars'
+ Plugin 'rip-rip/clang_complete'            " Helpers for C/C++
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'davidhalter/jedi-vim'
-
-call vundle#end()            
-
-filetype on
-filetype plugin on 
-filetype indent on 
+ Plugin 'christoomey/vim-tmux-navigator'    " Navigate tmux like vim
 
 
+ Bundle 'altercation/vim-colors-solarized'
+ Bundle 'davidhalter/jedi-vim'
 
-" System settings
-syntax on
 
-" Color theme  settings
-syntax enable 
-let g:solarized_termtrans = 1
-set background=dark
-colorscheme solarized
-
-set wildmenu            "Enable commandline complete
-set noeol
-set binary              " Dont add empty new line
-set modeline            " Respect modeline in files
+ call vundle#end()            
 
 
 
-set modelines=4
-set ignorecase          " Ignore case of searches
-set incsearch           " Highlight dynamically as pattern is typed
-set mouse=a             " Enable mouse in all modes
-set noerrorbells        " Disable error bells
-set nostartofline       " Don’t reset cursor to start of line when moving around.
-set shortmess=atI       " Don’t show the intro message when starting Vim
-set showmode            "Show the current mode
-set title               "Show the filename in the window titlebar
-set showcmd             "Show the (partial) command as it’s being typed
 
-" Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
+ " ---------------------------------------------------------------
+ " System settings
+ "  --------------------------------------------------------------
+ filetype on
+ filetype plugin on 
+ filetype indent on 
+ syntax on
+ syntax enable 
+ let g:solarized_termtrans = 1
+ set background=dark
+ colorscheme solarized
 
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
+ " Use relative line numbers
+ if exists("&relativenumber")
+	 set relativenumber
+	 au BufReadPost * set relativenumber
+ endif
 
-set clipboard=unnamed
+ " Start scrolling three lines before the horizontal window border
+ set scrolloff=3
+ 
+ set clipboard=unnamed
 
-"-----------------------"
-" Key bindings "
-nnoremap <c-p> :CtrlP<CR>           " Map keys for CtrlP fuzzy search
-
-" File management settings
-set nowritebackup 
-set noswapfile                      " Don't use swap files
-set history=1000
-set undolevels=1000
-
-set ruler
-set showcmd
-set autowrite
+ " ---------------------------------------------------------------
+ "  File management settings 
+ "  --------------------------------------------------------------
+ set nowritebackup 
+ set noswapfile                      " Don't use swap files
+ set history=1000
+ set undolevels=1000
 
 
-" Indentation rules
-set expandtab
-set backspace=2                       
-set preserveindent
-set softtabstop=0
-set shiftwidth=2
-set tabstop=2
-set smarttab
-set smartindent
 
-set noerrorbells visualbell t_vb=             
-set wildmode=list:longest,list:full		" Show list of files instead of autocomplete
+ " ---------------------------------------------------------------
+ "  Text format and indentation settings
+ "  --------------------------------------------------------------
 
-" Line settings
-set number                            " Show line number
-set cursorline                        " Highlight current line
+ " Allow backspace in insert mode
+ set backspace=indent,eol,start
 
+ " X spaces for indentation
+ set shiftwidth=2
 
-" Tab completion
-" Will insert tab at beginning of line
-" will use completion if not at beginning
-" source: https://github.com/thoughtbot/dotfiles/blob/master/vimrc
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
+ " show line number
+ set ruler
+ set showcmd
+ set autowrite
 
-" Open new split panes to right and bottom
-set splitbelow
-set splitright
+ "Enable commandline complete
+ set wildmenu            
+ set noeol
+ 
+ " Done add empty new lines
+ set binary              
+ set modeline            " Respect modeline in files
+ set modelines=4
+ set title               "Show the filename in the window titlebar
 
+ " X spaces for each tab
+ set tabstop=2
 
+ " Auto indent
+ set autoindent
+
+" Show list of files instead of autocomplete
+ set wildmode=list:longest,list:full		
+
+ " ---------------------------------------------------------------
+ "  Line settings
+ "  --------------------------------------------------------------
+ set number                            " Show line number
+ set cursorline                        " Highlight current line
+
+ " ---------------------------------------------------------------
+ "  Searching settings
+ "  --------------------------------------------------------------
+
+ " Ignore case of searches
+ set ignorecase
+ set smartcase
+
+" Highlight dynamically as pattern is typed
+ set incsearch
+
+ 
+
+ " Open new split panes to right and bottom
+ set splitbelow
+ set splitright
+
+ " ---------------------------------------------------------------
+ "  Key binding
+ "  --------------------------------------------------------------
+
+ "let g:user_emmet_leader_key='<C-Z>'       " Map emmet from <C-Y> to <C-Z>
+ nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
+ 
 
