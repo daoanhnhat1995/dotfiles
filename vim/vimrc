@@ -17,10 +17,17 @@ Plugin 'tpope/vim-surround'
 
 Plugin 'ascenator/L9', {'name': 'newL9'}
 
+"Plugin 'Valloric/YouCompleteMe'
+
 " Automatically insert 'end' for ruby methods
 Plugin 'tpope/vim-endwise'
 
- Plugin 'tomtom/tcomment_vim'               " Comment a paragraph helper
+ " Comment a paragraph helper
+ " usage:
+ " > Comment out a line: gcc
+ " > Comment out a block: gcap
+ " > Comment out selected: gc
+ Plugin 'tomtom/tcomment_vim'               
 
  Plugin 'tpope/vim-unimpaired'              " Utilities for common commands, adding or moving lines, encoding/decoding...
 
@@ -37,21 +44,35 @@ Plugin 'tpope/vim-endwise'
  Plugin 'scrooloose/nerdcommenter'
 
  " ------Autocomplete ------------"
- Plugin 'honza/vim-snippets'
+ "Plugin 'honza/vim-snippets'
+
+	Plugin 'Raimondi/delimitMate'
   
  " ------Language support plugins-- "
  
  Plugin 'tpope/vim-rails'                   " Utilities for Rails development
 
  Plugin 'fatih/vim-go'                      " Utilities for Go lang
- 
- Plugin 'mattn/emmet-vim'
+
 
  Plugin 'rip-rip/clang_complete'            " Helpers for C/C++
 
  Plugin 'christoomey/vim-tmux-navigator'    " Navigate tmux like vim
 
+ Plugin 'godlygeek/tabular'                 " Rearrange tabularly?
 
+ Plugin 'airblade/vim-gitgutter'							" Better git diff
+
+ 
+
+ " ------------- Javascript bundle -------------
+ Plugin 'jelera/vim-javascript-syntax'
+ Plugin 'nathanaelkane/vim-indent-guides'
+ Plugin 'pangloss/vim-javascript'
+
+ "-------------------------------------------------------------------
+ " Bundles installed here
+ " ------------------------------------------------------------------
  Bundle 'altercation/vim-colors-solarized'
  Bundle 'davidhalter/jedi-vim'
 
@@ -158,8 +179,12 @@ Plugin 'tpope/vim-endwise'
  "  Key binding
  "  --------------------------------------------------------------
 
- "let g:user_emmet_leader_key='<C-Z>'       " Map emmet from <C-Y> to <C-Z>
  nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
 
  let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|tmp|ico|git|svn))$'
- 
+
+ "Syntax highlight htmlcss
+ let g:javascript_enable_domhtmlcss = 1
+ let g:javascript_ignore_javaScriptdoc = 1
+
+ let g:SuperTabDefaultCompletionType = "<c-n>"
