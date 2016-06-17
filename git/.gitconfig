@@ -1,0 +1,26 @@
+[user]
+	name = Nhat Dao
+	email = daoanhnhat1995@gmail.com
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[push]
+	default = current
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[color]
+	ui = true
+[alias]
+	graph= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+	st = status
+	a = add
+	aa = add --all
+	cm = commit
+	br = branch
+	co = checkout
+	nb = checkout -b
+[core]
+	excludesfile = /Users/nhatdao/.gitignore_global
