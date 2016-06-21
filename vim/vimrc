@@ -69,6 +69,7 @@ Plugin 'tpope/vim-endwise'
  Plugin 'jelera/vim-javascript-syntax'
  Plugin 'nathanaelkane/vim-indent-guides'
  Plugin 'pangloss/vim-javascript'
+ Plugin 'mxw/vim-jsx'
 
  "-------------------------------------------------------------------
  " Bundles installed here
@@ -186,5 +187,9 @@ Plugin 'tpope/vim-endwise'
  "Syntax highlight htmlcss
  let g:javascript_enable_domhtmlcss = 1
  let g:javascript_ignore_javaScriptdoc = 1
+
+ " Highlight jsx in .js file
+ let g:jsx_ext_required = 0
+
 
  let g:SuperTabDefaultCompletionType = "<c-n>"
