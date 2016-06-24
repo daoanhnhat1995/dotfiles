@@ -75,6 +75,7 @@ Plugin 'tpope/vim-endwise'
  " Bundles installed here
  " ------------------------------------------------------------------
  Bundle 'altercation/vim-colors-solarized'
+ Bundle 'sickill/vim-monokai'
  Bundle 'davidhalter/jedi-vim'
 
 
@@ -93,7 +94,7 @@ Plugin 'tpope/vim-endwise'
  syntax enable 
  let g:solarized_termtrans = 1
  set background=dark
- colorscheme solarized
+ colorscheme monokai 
 
  " Use relative line numbers
  if exists("&relativenumber")
@@ -200,5 +201,3 @@ Plugin 'tpope/vim-endwise'
  nnoremap <C-K> <C-W><C-K>
  nnoremap <C-L> <C-W><C-L>
  nnoremap <C-H> <C-W><C-H>
-
- 
