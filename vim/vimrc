@@ -94,7 +94,7 @@ Plugin 'tpope/vim-endwise'
  syntax enable 
  let g:solarized_termtrans = 1
  set background=dark
- colorscheme monokai 
+ colorscheme solarized
 
  " Use relative line numbers
  if exists("&relativenumber")
