@@ -183,7 +183,7 @@ Plugin 'tpope/vim-endwise'
 
  nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
 
- let g:ctrlp_custom_ignore = '\v[\/](node_modules|bin|bower_components|target|dist)|(\.(swp|tmp|ico|git|svn))$'
+ let g:ctrlp_custom_ignore = '\v[\/](node_modules|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn))$'
 
  "Syntax highlight htmlcss
  let g:javascript_enable_domhtmlcss = 1
