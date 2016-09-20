@@ -55,7 +55,6 @@ Plugin 'tpope/vim-endwise'
  Plugin 'fatih/vim-go'                      " Utilities for Go lang
 
 
- Plugin 'rip-rip/clang_complete'            " Helpers for C/C++
 
  Plugin 'christoomey/vim-tmux-navigator'    " Navigate tmux like vim
 
@@ -77,6 +76,8 @@ Plugin 'tpope/vim-endwise'
  Bundle 'altercation/vim-colors-solarized'
  Bundle 'sickill/vim-monokai'
  Bundle 'davidhalter/jedi-vim'
+
+ Bundle 'sonph/onehalf'
 
 
  call vundle#end()            
@@ -146,7 +147,7 @@ Plugin 'tpope/vim-endwise'
  set title               
 
  " X spaces for each tab
- set tabstop=2
+ set tabstop=4
 
  " Auto indent
  set autoindent
