@@ -15,6 +15,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plugin 'tpope/vim-surround'
 
+Plugin 'leafgarland/typescript-vim'
+
 Plugin 'ascenator/L9', {'name': 'newL9'}
 
 "Plugin 'Valloric/YouCompleteMe'
@@ -22,183 +24,186 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 " Automatically insert 'end' for ruby methods
 Plugin 'tpope/vim-endwise'
 
- " Comment a paragraph helper
- " usage:
- " > Comment out a line: gcc
- " > Comment out a block: gcap
- " > Comment out selected: gc
- Plugin 'tomtom/tcomment_vim'               
+" Comment a paragraph helper
+" usage:
+" > Comment out a line: gcc
+" > Comment out a block: gcap
+" > Comment out selected: gc
+Plugin 'tomtom/tcomment_vim'               
 
- Plugin 'tpope/vim-unimpaired'              " Utilities for common commands, adding or moving lines, encoding/decoding...
+Plugin 'tpope/vim-unimpaired'              " Utilities for common commands, adding or moving lines, encoding/decoding...
 
- Plugin 'kien/ctrlp.vim'                     " Fuzzy file, buffer, mru and tag finder
+Plugin 'kien/ctrlp.vim'                     " Fuzzy file, buffer, mru and tag finder
 
- Plugin 'bling/vim-airline'                  " Vim airline status line
+Plugin 'bling/vim-airline'                  " Vim airline status line
 
- Plugin 'tpope/vim-rake'                     " Utilies for Rake projets
+Plugin 'tpope/vim-rake'                     " Utilies for Rake projets
 
- Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
- Plugin 'nono/vim-handlebars'
+Plugin 'nono/vim-handlebars'
 
- Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 
- " ------Autocomplete ------------"
- "Plugin 'honza/vim-snippets'
+" ------Autocomplete ------------"
+"Plugin 'honza/vim-snippets'
 
-	Plugin 'Raimondi/delimitMate'
-  
- " ------Language support plugins-- "
- 
- Plugin 'tpope/vim-rails'                   " Utilities for Rails development
+Plugin 'Raimondi/delimitMate'
 
- Plugin 'fatih/vim-go'                      " Utilities for Go lang
+" ------Language support plugins-- "
 
+Plugin 'tpope/vim-rails'                   " Utilities for Rails development
 
-
- Plugin 'christoomey/vim-tmux-navigator'    " Navigate tmux like vim
-
- Plugin 'godlygeek/tabular'                 " Rearrange tabularly?
-
- Plugin 'airblade/vim-gitgutter'							" Better git diff
-
- 
-
- " ------------- Javascript bundle -------------
- Plugin 'jelera/vim-javascript-syntax'
- Plugin 'nathanaelkane/vim-indent-guides'
- Plugin 'pangloss/vim-javascript'
- Plugin 'mxw/vim-jsx'
-
- "-------------------------------------------------------------------
- " Bundles installed here
- " ------------------------------------------------------------------
- Bundle 'altercation/vim-colors-solarized'
- Bundle 'sickill/vim-monokai'
- Bundle 'davidhalter/jedi-vim'
-
- Bundle 'sonph/onehalf'
-
-
- call vundle#end()            
+Plugin 'fatih/vim-go'                      " Utilities for Go lang
 
 
 
+Plugin 'christoomey/vim-tmux-navigator'    " Navigate tmux like vim
 
- " ---------------------------------------------------------------
- " System settings
- "  --------------------------------------------------------------
- filetype on
- filetype plugin on 
- filetype indent on 
- syntax on
- syntax enable 
- let g:solarized_termtrans = 1
- set background=dark
- colorscheme monokai
+Plugin 'godlygeek/tabular'                 " Rearrange tabularly?
 
- " Use relative line numbers
+Plugin 'airblade/vim-gitgutter'							" Better git diff
+
+
+
+" ------------- Javascript bundle -------------
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
+"-------------------------------------------------------------------
+" Bundles installed here
+" ------------------------------------------------------------------
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'sickill/vim-monokai'
+Bundle 'davidhalter/jedi-vim'
+
+
+
+call vundle#end()            
+
+
+
+
+" ---------------------------------------------------------------
+" System settings
+"  --------------------------------------------------------------
+filetype on
+filetype plugin on 
+filetype indent on 
+syntax on
+syntax enable 
+let g:solarized_termtrans = 1
+set background=dark
+colorscheme monokai
+
+" Use relative line numbers
 "  if exists("&relativenumber")
 " 	 set relativenumber
 " 	 au BufReadPost * set relativenumber
 "  endif
 
- " Start scrolling three lines before the horizontal window border
- set scrolloff=3
- set clipboard=unnamed
+" Start scrolling three lines before the horizontal window border
+set scrolloff=3
+set clipboard=unnamed
 
- " ---------------------------------------------------------------
- "  File management settings 
- "  --------------------------------------------------------------
- set nowritebackup 
+" ---------------------------------------------------------------
+"  File management settings 
+"  --------------------------------------------------------------
+set nowritebackup 
 
- " Don't use swap files
- set noswapfile                      
- set history=1000
- set undolevels=1000
+" Don't use swap files
+set noswapfile                      
+set history=1000
+set undolevels=1000
 
 
 
- " ---------------------------------------------------------------
- "  Text format and indentation settings
- "  --------------------------------------------------------------
+" ---------------------------------------------------------------
+"  Text format and indentation settings
+"  --------------------------------------------------------------
 
- " Allow backspace in insert mode
- set backspace=indent,eol,start
+" Allow backspace in insert mode
+set backspace=indent,eol,start
 
- " X spaces for indentation
- set shiftwidth=2
+" X spaces for indentation
+set shiftwidth=2
 
- " show line number
- set ruler
- set showcmd
- set autowrite
+" show line number
+set ruler
+set showcmd
+set autowrite
 
- "Enable commandline complete
- set wildmenu            
- set noeol
- 
- " Done add empty new lines
- set binary              
- " Respect modeline in files
- set modeline            
- set modelines=4
- "Show the filename in the window titlebar
- set title               
+"Enable commandline complete
+set wildmenu            
+set noeol
 
- " X spaces for each tab
- set tabstop=4
+" Done add empty new lines
+set binary              
+" Respect modeline in files
+set modeline            
+set modelines=4
+"Show the filename in the window titlebar
+set title               
 
- " Auto indent
- set autoindent
+" X spaces for each tab
+set tabstop=4
+
+" Auto indent
+set autoindent
 
 " Show list of files instead of autocomplete
- set wildmode=list:longest,list:full		
+set wildmode=list:longest,list:full		
 
- " ---------------------------------------------------------------
- "  Line settings
- "  --------------------------------------------------------------
- set number                            " Show line number
- set cursorline                        " Highlight current line
+" ---------------------------------------------------------------
+"  Line settings
+"  --------------------------------------------------------------
+set number                            " Show line number
+set cursorline                        " Highlight current line
 
- " ---------------------------------------------------------------
- "  Searching settings
- "  --------------------------------------------------------------
+" ---------------------------------------------------------------
+"  Searching settings
+"  --------------------------------------------------------------
 
- " Ignore case of searches
- set ignorecase
- set smartcase
+" Ignore case of searches
+set ignorecase
+set smartcase
 
 " Highlight dynamically as pattern is typed
- set incsearch
-
- 
-
- " Open new split panes to right and bottom
- set splitbelow
- set splitright
-
- " ---------------------------------------------------------------
- "  Key binding
- "  --------------------------------------------------------------
-
- nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
-
- let g:ctrlp_custom_ignore = '\v[\/](node_modules|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn))$'
-
- "Syntax highlight htmlcss
- let g:javascript_enable_domhtmlcss = 1
- let g:javascript_ignore_javaScriptdoc = 1
-
- " Highlight jsx in .js file
- let g:jsx_ext_required = 0
+set incsearch
 
 
- let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" Open new split panes to right and bottom
+set splitbelow
+set splitright
+
+" ---------------------------------------------------------------
+"  Key binding
+"  --------------------------------------------------------------
+
+nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
+
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn))$'
+
+"Syntax highlight htmlcss
+let g:javascript_enable_domhtmlcss = 1
+let g:javascript_ignore_javaScriptdoc = 1
+
+" Highlight jsx in .js file
+let g:jsx_ext_required = 0
 
 
- " Bind better moving between panes
- nnoremap <C-J> <C-W><C-J>
- nnoremap <C-K> <C-W><C-K>
- nnoremap <C-L> <C-W><C-L>
- nnoremap <C-H> <C-W><C-H>
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+
+" Bind better moving between panes
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
+"" Config typescript syntax custom indent
+let g:typescript_indent_disable = 1
