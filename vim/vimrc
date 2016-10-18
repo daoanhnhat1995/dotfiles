@@ -148,7 +148,7 @@ set modelines=4
 set title               
 
 " X spaces for each tab
-set tabstop=4
+set tabstop=2
 
 " Auto indent
 set autoindent
