@@ -19,6 +19,7 @@
 	a = add
 	aa = add --all
 	cm = commit
+	cmm = commit -m 
 	br = branch
 	co = checkout
 	nb = checkout -b

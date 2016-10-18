@@ -1,1 +1,10 @@
-/Users/nhatdao/.zshrc
+export ZSH=~/.oh-my-zsh
+
+ZSH_THEME="robbyrussell"
+plugins=(git zsh-syntax-highlighting)
+
+# User configuration
+
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+source $ZSH/oh-my-zsh.sh
+source ~/.bash_profile
