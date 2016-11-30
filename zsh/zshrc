@@ -1,7 +1,7 @@
 export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
-plugins=(git zsh-syntax-highlighting)
+plugins=(git vi-mode zsh-syntax-highlighting)
 
 # User configuration
 

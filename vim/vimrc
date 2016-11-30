@@ -128,7 +128,7 @@ set undolevels=1000
 set backspace=indent,eol,start
 
 " X spaces for indentation
-set shiftwidth=2
+set shiftwidth=4
 
 " show line number
 set ruler
@@ -148,7 +148,7 @@ set modelines=4
 set title               
 
 " X spaces for each tab
-set tabstop=2
+set tabstop=4
 
 " Auto indent
 set autoindent
@@ -187,6 +187,7 @@ nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
 
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn))$'
 
+
 "Syntax highlight htmlcss
 let g:javascript_enable_domhtmlcss = 1
 let g:javascript_ignore_javaScriptdoc = 1
@@ -207,3 +208,7 @@ nnoremap <C-H> <C-W><C-H>
 
 "" Config typescript syntax custom indent
 let g:typescript_indent_disable = 1
+
+if !has('nvim')
+	set ttymouse=xterm2
+endif
