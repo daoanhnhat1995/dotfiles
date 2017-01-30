@@ -212,3 +212,6 @@ let g:typescript_indent_disable = 1
 if !has('nvim')
 	set ttymouse=xterm2
 endif
+
+"" Configure ejs syntax highlight
+au BufNewFile,BufRead *.ejs set filetype=html
