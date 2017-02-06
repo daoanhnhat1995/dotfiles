@@ -127,8 +127,8 @@ set undolevels=1000
 " Allow backspace in insert mode
 set backspace=indent,eol,start
 
-" X spaces for indentation
-set shiftwidth=4
+" Indentation
+set expandtab shiftwidth=2 tabstop=2 softtabstop=2 smarttab smartindent
 
 " show line number
 set ruler
