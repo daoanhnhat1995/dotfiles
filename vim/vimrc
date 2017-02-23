@@ -95,7 +95,7 @@ filetype indent on
 syntax on
 syntax enable 
 let g:solarized_termtrans = 1
-set background=dark
+" set background=dark
 colorscheme monokai
 
 " Use relative line numbers
@@ -107,6 +107,10 @@ colorscheme monokai
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 set clipboard=unnamed
+
+if $TMUX == ''
+  set clipboard=unnamed
+endif
 
 " ---------------------------------------------------------------
 "  File management settings 
@@ -185,7 +189,7 @@ set splitright
 
 nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
 
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn))$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn))$'
 
 
 "Syntax highlight htmlcss
