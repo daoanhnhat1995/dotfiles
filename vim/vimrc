@@ -66,16 +66,17 @@ Plugin 'airblade/vim-gitgutter'							" Better git diff
 
 
 
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 " ------------- Javascript bundle -------------
 Plugin 'jelera/vim-javascript-syntax'
 
 "-------------------------------------------------------------------
 " Bundles installed here
 " ------------------------------------------------------------------
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'sickill/vim-monokai'
+Bundle 'gosukiwi/vim-atom-dark'
 Bundle 'davidhalter/jedi-vim'
-Plugin 'dracula/vim'
 
 
 
@@ -92,10 +93,11 @@ filetype plugin on
 filetype indent on 
 syntax on
 syntax enable 
-set background=dark
-colorscheme dracula
+
+colorscheme atom-dark-256
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='dracula'
 
 
 " Use relative line numbers
@@ -189,7 +191,7 @@ set splitright
 
 nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
 
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn))$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
 
 
 "Syntax highlight htmlcss
