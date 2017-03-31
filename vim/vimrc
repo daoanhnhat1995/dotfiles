@@ -77,6 +77,7 @@ Plugin 'jelera/vim-javascript-syntax'
 Bundle 'sickill/vim-monokai'
 Bundle 'gosukiwi/vim-atom-dark'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'dracula/vim'
 
 
 
@@ -153,8 +154,6 @@ set modelines=4
 "Show the filename in the window titlebar
 set title               
 
-" X spaces for each tab
-set tabstop=4
 
 " Auto indent
 set autoindent
