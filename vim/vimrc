@@ -2,6 +2,7 @@
 set nocompatible
 
 
+set termguicolors
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
