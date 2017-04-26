@@ -8,3 +8,10 @@ plugins=(git vi-mode zsh-syntax-highlighting)
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 source $ZSH/oh-my-zsh.sh
 source ~/.bash_profile
+
+
+# Configure history
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+

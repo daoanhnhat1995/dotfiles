@@ -11,18 +11,14 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
 
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}  "Expand HTML tags, example: #header > h1 CTRL+E
 
-Plugin 'tpope/vim-surround'
-
-Plugin 'leafgarland/typescript-vim'
+Plugin 'tpope/vim-surround' "Surround tag utility
 
 Plugin 'ascenator/L9', {'name': 'newL9'}
 
-"Plugin 'Valloric/YouCompleteMe'
-
 " Automatically insert 'end' for ruby methods
-Plugin 'tpope/vim-endwise'
+" Plugin 'tpope/vim-endwise'
 
 " Comment a paragraph helper
 " usage:
@@ -37,13 +33,13 @@ Plugin 'kien/ctrlp.vim'                     " Fuzzy file, buffer, mru and tag fi
 
 Plugin 'bling/vim-airline'                  " Vim airline status line
 
-Plugin 'tpope/vim-rake'                     " Utilies for Rake projets
+" Plugin 'tpope/vim-rake'                     " Utilies for Rake projets
 
 Plugin 'scrooloose/nerdtree'
 
-Plugin 'nono/vim-handlebars'
+" Plugin 'nono/vim-handlebars'
 
-Plugin 'scrooloose/nerdcommenter'
+" Plugin 'scrooloose/nerdcommenter'
 
 " ------Autocomplete ------------"
 "Plugin 'honza/vim-snippets'
@@ -52,19 +48,17 @@ Plugin 'Raimondi/delimitMate'
 
 " ------Language support plugins-- "
 
-Plugin 'tpope/vim-rails'                   " Utilities for Rails development
+" Plugin 'tpope/vim-rails'                   " Utilities for Rails development
 
 Plugin 'fatih/vim-go'                      " Utilities for Go lang
 
+Plugin 'leafgarland/typescript-vim' "Support for typescript
 
-
-Plugin 'christoomey/vim-tmux-navigator'    " Navigate tmux like vim
+" Plugin 'christoomey/vim-tmux-navigator'    " Navigate tmux like vim
 
 Plugin 'godlygeek/tabular'                 " Rearrange tabularly?
 
 Plugin 'airblade/vim-gitgutter'							" Better git diff
-
-
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -74,13 +68,10 @@ Plugin 'jelera/vim-javascript-syntax'
 "-------------------------------------------------------------------
 " Bundles installed here
 " ------------------------------------------------------------------
-Bundle 'sickill/vim-monokai'
 Bundle 'gosukiwi/vim-atom-dark'
-Bundle 'davidhalter/jedi-vim'
+" Python docs utility
+" Bundle 'davidhalter/jedi-vim' 
 Bundle 'dracula/vim'
-
-
-
 call vundle#end()            
 
 
@@ -95,25 +86,15 @@ filetype indent on
 syntax on
 syntax enable 
 
-colorscheme atom-dark-256
-
+colorscheme dracula 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='dracula'
 
 
-" Use relative line numbers
-"  if exists("&relativenumber")
-" 	 set relativenumber
-" 	 au BufReadPost * set relativenumber
-"  endif
 
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 set clipboard=unnamed
-
-if $TMUX == ''
-  set clipboard=unnamed
-endif
 
 " ---------------------------------------------------------------
 "  File management settings 
@@ -124,8 +105,6 @@ set nowritebackup
 set noswapfile                      
 set history=1000
 set undolevels=1000
-
-
 
 " ---------------------------------------------------------------
 "  Text format and indentation settings
