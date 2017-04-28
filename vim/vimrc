@@ -2,7 +2,7 @@
 set nocompatible
 
 
-set termguicolors
+" set termguicolors
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -37,13 +37,6 @@ Plugin 'bling/vim-airline'                  " Vim airline status line
 " Plugin 'tpope/vim-rake'                     " Utilies for Rake projets
 
 Plugin 'scrooloose/nerdtree'
-
-" Plugin 'nono/vim-handlebars'
-
-" Plugin 'scrooloose/nerdcommenter'
-
-" ------Autocomplete ------------"
-"Plugin 'honza/vim-snippets'
 
 Plugin 'Raimondi/delimitMate'
 
@@ -95,7 +88,7 @@ let g:airline_theme='dracula'
 
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
-set clipboard=unnamed
+" set clipboard=unnamed " use OS clipboard
 
 " ---------------------------------------------------------------
 "  File management settings 
@@ -196,6 +189,10 @@ let g:typescript_indent_disable = 1
 
 if !has('nvim')
 	set ttymouse=xterm2
+endif
+
+if $TMUX == ''
+	set clipboard += unnamed
 endif
 
 "" Configure ejs syntax highlight
