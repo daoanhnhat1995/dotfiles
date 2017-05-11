@@ -1,0 +1,41 @@
+export CLICOLOR=1
+export TERM=xterm-256color 
+export PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
+# added by Anaconda3 4.2.0 installer
+export PATH="/Users/nhatdao/anaconda3/bin:$PATH"
+
+
+#Configure nvm through brew
+echo "nvm taking 4ever"
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# Manage Ruby versions with rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+
+
+# Configure Go path
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+
+#export PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:/Users/nhatdao/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+export LESS="-R"
+export DOCKER_API_VERSION=1.21
+
+#Fix docker-machine env
+#eval `docker-machine env 2>/dev/null`
+alias g++11="g++ -std=c++11"
+

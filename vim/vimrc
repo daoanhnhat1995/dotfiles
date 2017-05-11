@@ -10,9 +10,7 @@ call vundle#begin()
 "Load vundle
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'tpope/vim-fugitive'
-
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}  "Expand HTML tags, example: #header > h1 CTRL+E
+Plugin 'tpope/vim-fugitive' "Interact with Git on vim, :Gstatus ...
 
 Plugin 'tpope/vim-surround' "Surround tag utility
 
@@ -43,14 +41,12 @@ Plugin 'Raimondi/delimitMate'
 " ------Language support plugins-- "
 
 " Plugin 'tpope/vim-rails'                   " Utilities for Rails development
-
-Plugin 'fatih/vim-go'                      " Utilities for Go lang
-
-Plugin 'leafgarland/typescript-vim' "Support for typescript
+Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" Plugin 'leafgarland/typescript-vim' "Support for typescript
 
 " Plugin 'christoomey/vim-tmux-navigator'    " Navigate tmux like vim
 
-Plugin 'godlygeek/tabular'                 " Rearrange tabularly?
+Plugin 'godlygeek/tabular'                 " Rearrange tabularly http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 
 Plugin 'airblade/vim-gitgutter'							" Better git diff
 
@@ -80,7 +76,7 @@ filetype indent on
 syntax on
 syntax enable 
 
-colorscheme dracula 
+colorscheme dracula
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='dracula'
 
@@ -111,7 +107,7 @@ set backspace=indent,eol,start
 set expandtab shiftwidth=2 tabstop=2 softtabstop=2 smarttab smartindent
 
 " show line number
-set ruler
+" set ruler
 set showcmd
 set autowrite
 
@@ -196,4 +192,4 @@ if $TMUX == ''
 endif
 
 "" Configure ejs syntax highlight
-au BufNewFile,BufRead *.ejs set filetype=html
+" au BufNewFile,BufRead *.ejs set filetype=html
