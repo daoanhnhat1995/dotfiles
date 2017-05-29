@@ -2,7 +2,7 @@
 set nocompatible
 
 
-" set termguicolors
+"set termguicolors
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -61,9 +61,8 @@ Plugin 'jelera/vim-javascript-syntax'
 Bundle 'gosukiwi/vim-atom-dark'
 " Python docs utility
 " Bundle 'davidhalter/jedi-vim' 
-Bundle 'dracula/vim'
+Bundle 'atelierbram/Base2Tone-vim'
 call vundle#end()            
-
 
 
 
@@ -76,9 +75,10 @@ filetype indent on
 syntax on
 syntax enable 
 
-colorscheme dracula
+set background=dark
+colorscheme Base2Tone_CaveDark
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='dracula'
+let g:airline_theme='Base2Tone_CaveDark'
 
 
 
@@ -103,8 +103,13 @@ set undolevels=1000
 " Allow backspace in insert mode
 set backspace=indent,eol,start
 
-" Indentation
-set expandtab shiftwidth=2 tabstop=2 softtabstop=2 smarttab smartindent
+" Tab configuration
+set expandtab 
+set shiftwidth=2 
+set tabstop=2 
+set softtabstop=2 
+set smarttab 
+set smartindent
 
 " show line number
 " set ruler
@@ -148,7 +153,6 @@ set smartcase
 set incsearch
 
 
-
 " Open new split panes to right and bottom
 set splitbelow
 set splitright
@@ -190,6 +194,9 @@ endif
 if $TMUX == ''
 	set clipboard=unnamed
 endif
+
+
+set term=screen-256color
 
 "" Configure ejs syntax highlight
 " au BufNewFile,BufRead *.ejs set filetype=html

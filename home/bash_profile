@@ -27,8 +27,7 @@ eval "$(rbenv init -)"
 # Configure Go path
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-
+export PATH=$PATH:/usr/local/opt/go/libexec/bin 
 
 #export PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:/Users/nhatdao/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
@@ -38,4 +37,6 @@ export DOCKER_API_VERSION=1.21
 #Fix docker-machine env
 #eval `docker-machine env 2>/dev/null`
 alias g++11="g++ -std=c++11"
+
+export USACO=$HOME/programming/usa-co-training
 
