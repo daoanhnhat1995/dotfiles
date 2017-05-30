@@ -14,6 +14,7 @@ Plugin 'tpope/vim-fugitive' "Interact with Git on vim, :Gstatus ...
 
 Plugin 'tpope/vim-surround' "Surround tag utility
 
+
 Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " Automatically insert 'end' for ruby methods
@@ -76,9 +77,9 @@ syntax on
 syntax enable 
 
 set background=dark
-colorscheme Base2Tone_CaveDark
+colorscheme Base2Tone_PoolDark
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='Base2Tone_CaveDark'
+let g:airline_theme='Base2Tone_DrawbridgeDark'
 
 
 
@@ -105,11 +106,11 @@ set backspace=indent,eol,start
 
 " Tab configuration
 set expandtab 
-set shiftwidth=2 
-set tabstop=2 
-set softtabstop=2 
+set shiftwidth=4
+set tabstop=4
 set smarttab 
 set smartindent
+
 
 " show line number
 " set ruler
@@ -197,6 +198,7 @@ endif
 
 
 set term=screen-256color
+set t_Co=256
 
 "" Configure ejs syntax highlight
 " au BufNewFile,BufRead *.ejs set filetype=html
