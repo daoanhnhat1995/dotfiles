@@ -1,5 +1,4 @@
 export CLICOLOR=1
-export TERM=xterm-256color 
 export PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
 # added by Anaconda3 4.2.0 installer
 export PATH="/Users/nhatdao/anaconda3/bin:$PATH"

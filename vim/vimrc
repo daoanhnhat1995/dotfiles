@@ -4,8 +4,7 @@ set nocompatible
 
 "set termguicolors
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
+call vundle#begin() 
 
 "Load vundle
 Plugin 'VundleVim/Vundle.vim'
@@ -32,6 +31,8 @@ Plugin 'tpope/vim-unimpaired'              " Utilities for common commands, addi
 Plugin 'kien/ctrlp.vim'                     " Fuzzy file, buffer, mru and tag finder
 
 Plugin 'bling/vim-airline'                  " Vim airline status line
+Bundle 'vim-airline/vim-airline-themes'
+
 
 " Plugin 'tpope/vim-rake'                     " Utilies for Rake projets
 
@@ -60,6 +61,7 @@ Plugin 'jelera/vim-javascript-syntax'
 " Bundles installed here
 " ------------------------------------------------------------------
 Bundle 'gosukiwi/vim-atom-dark'
+
 " Python docs utility
 " Bundle 'davidhalter/jedi-vim' 
 Bundle 'atelierbram/Base2Tone-vim'
@@ -78,10 +80,34 @@ syntax enable
 
 set background=dark
 colorscheme Base2Tone_PoolDark
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='Base2Tone_DrawbridgeDark'
 
-
+" vim-airlien
+function! AirlineInit()
+	let g:airline_mode_map = {
+				\ '__' : '-',
+				\ 'n' : 'N',
+				\ 'i' : 'I',
+				\ 'R' : 'R',
+				\ 'c' : 'C',
+				\ 'v' : 'V',
+				\ 'V' : 'V',
+				\ 's' : 'S',
+				\ 'S' : 'S',
+				\ }
+	let g:airline_left_sep = ''
+	let g:airline_left_alt_sep= ''
+	let g:airline_right_sep = ''
+	let g:airline_right_alt_sep = ''
+	let g:airline_section_a = airline#section#create(['mode'])
+	let g:airline_section_b = airline#section#create(['%f'])
+	let g:airline_section_c = airline#section#create([''])
+	let g:airline_section_x = airline#section#create_right([''])
+	let g:airline_section_y = airline#section#create_right([''])
+	let g:airline_section_z = airline#section#create_right(['%l %c'])
+	AirlineToggleWhitespace
+	AirlineTheme papercolor
+endfunction
+autocmd VimEnter * call AirlineInit()
 
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
@@ -162,10 +188,12 @@ set splitright
 "  Key binding
 "  --------------------------------------------------------------
 
-nnoremap <c-p> :CtrlP<CR>                 " Map keys for CtrlP fuzzy search
+nnoremap <c-p> :CtrlP<CR>                 
 
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
 
+" ctrlp should ignore things in .gitignore
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc--exclude-standard']
 
 "Syntax highlight htmlcss
 let g:javascript_enable_domhtmlcss = 1
