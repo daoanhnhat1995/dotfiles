@@ -192,11 +192,11 @@ autocmd VimEnter * call AirlineInit()
 "--------------------------------------------------------------------
 " Configure Syntastic
 "--------------------------------------------------------------------
-let g:syntastic_cpp_compiler = 'g++-4.9'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
 " Disable for markdown files
 let g:syntastic_disabled_filetypes=['markdown'] 
-let g:syntastic_python_flake8_args = "--ignore=W191,W293,E101,E126,E127,E128,E221,E226,E227,E228,E231,E241,E261,E262,E265,E272,E301,E302,E501"
 
 
 " indentLine
