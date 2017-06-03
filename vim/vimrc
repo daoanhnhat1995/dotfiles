@@ -1,87 +1,167 @@
+"--------------------------------------------------------------------
+" Nhat Dao ' s Vim config
+"--------------------------------------------------------------------
+
+
 " Unlink vi
 set nocompatible
+filetype off
 
-
-"set termguicolors
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() 
 
-"Load vundle
+"--------------------------------------------------------------------
+" Using vundle for plugin management
+" https://github.com/VundleVim/Vundle.vim
+"--------------------------------------------------------------------
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'tpope/vim-fugitive' "Interact with Git on vim, :Gstatus ...
 
-Plugin 'tpope/vim-surround' "Surround tag utility
+"--------------------------------------------------------------------
+"Plugins installed list
+"--------------------------------------------------------------------
 
+"--------------------------------------------------------------------
+"Interact with Git within vim, :Gstatus ...
+"--------------------------------------------------------------------
+Plugin 'tpope/vim-fugitive' 
 
-Plugin 'ascenator/L9', {'name': 'newL9'}
+"--------------------------------------------------------------------
+"Surround tag utility
+"--------------------------------------------------------------------
+Plugin 'tpope/vim-surround' 
 
+"--------------------------------------------------------------------
 " Automatically insert 'end' for ruby methods
+"
+"--------------------------------------------------------------------
 " Plugin 'tpope/vim-endwise'
 
-" Comment a paragraph helper
+"--------------------------------------------------------------------
+" Comment a block helper
 " usage:
 " > Comment out a line: gcc
 " > Comment out a block: gcap
 " > Comment out selected: gc
+"--------------------------------------------------------------------
 Plugin 'tomtom/tcomment_vim'               
 
-Plugin 'tpope/vim-unimpaired'              " Utilities for common commands, adding or moving lines, encoding/decoding...
+"--------------------------------------------------------------------
+" Auto map brackets as typing
+"--------------------------------------------------------------------
+Plugin 'tpope/vim-unimpaired'              
 
-Plugin 'kien/ctrlp.vim'                     " Fuzzy file, buffer, mru and tag finder
+"--------------------------------------------------------------------
+" Allow using '.' to paste an action performed before
+"--------------------------------------------------------------------
+Bundle 'tpope/vim-repeat'
 
-Plugin 'bling/vim-airline'                  " Vim airline status line
-Bundle 'vim-airline/vim-airline-themes'
+"--------------------------------------------------------------------
+" Fuzzy file, buffer, mru and tag finder
+"--------------------------------------------------------------------
+Plugin 'kien/ctrlp.vim'                     
+
+"--------------------------------------------------------------------
+" Always highlight enclosing tags
+"--------------------------------------------------------------------
+Plugin 'Valloric/MatchTagAlways'
 
 
-" Plugin 'tpope/vim-rake'                     " Utilies for Rake projets
-
+"--------------------------------------------------------------------
+" Display a nerd tree on the left side
+" :NerdTree
+"--------------------------------------------------------------------
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'Raimondi/delimitMate'
 
-" ------Language support plugins-- "
+"--------------------------------------------------------------------
+" Language support plugins:
+"--------------------------------------------------------------------
 
-" Plugin 'tpope/vim-rails'                   " Utilities for Rails development
+
+"--------------------------------------------------------------------
+" Utilities for Rails development
+"--------------------------------------------------------------------
+" Plugin 'tpope/vim-rails'                   
+
+"--------------------------------------------------------------------
+" Go utilties:
+" GoImports : to auto include libraries 
+" GoDoc : look up docs
+" GoRun 
+" ...
+"--------------------------------------------------------------------
 Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-" Plugin 'leafgarland/typescript-vim' "Support for typescript
 
-" Plugin 'christoomey/vim-tmux-navigator'    " Navigate tmux like vim
 
-Plugin 'godlygeek/tabular'                 " Rearrange tabularly http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+"--------------------------------------------------------------------
+" Syntax checking
+"--------------------------------------------------------------------
+Bundle 'scrooloose/syntastic'
 
-Plugin 'airblade/vim-gitgutter'							" Better git diff
+"--------------------------------------------------------------------
+" Syntax enforcement for typescript
+"--------------------------------------------------------------------
+Plugin 'leafgarland/typescript-vim' "Support for typescript
 
+"--------------------------------------------------------------------
+" Navigate tmux sessions between vim
+"--------------------------------------------------------------------
+Plugin 'christoomey/vim-tmux-navigator'    
+
+
+"--------------------------------------------------------------------
+" Better git diff
+"--------------------------------------------------------------------
+Plugin 'airblade/vim-gitgutter'							
+
+
+"--------------------------------------------------------------------
+" Javascript syntax enforcement
+"--------------------------------------------------------------------
 Plugin 'pangloss/vim-javascript'
+
+"--------------------------------------------------------------------
+" jsx syntax enforcement
+"--------------------------------------------------------------------
 Plugin 'mxw/vim-jsx'
-" ------------- Javascript bundle -------------
-Plugin 'jelera/vim-javascript-syntax'
 
-"-------------------------------------------------------------------
-" Bundles installed here
-" ------------------------------------------------------------------
-Bundle 'gosukiwi/vim-atom-dark'
+"--------------------------------------------------------------------
+" Colors and themese
+"--------------------------------------------------------------------
+Bundle 'nanotech/jellybeans.vim'
 
-" Python docs utility
-" Bundle 'davidhalter/jedi-vim' 
-Bundle 'atelierbram/Base2Tone-vim'
+"--------------------------------------------------------------------
+" Display line status at the bottom of screen
+"--------------------------------------------------------------------
+Bundle 'bling/vim-airline'  
+Bundle 'vim-airline/vim-airline-themes'
+
 call vundle#end()            
 
 
 
-" ---------------------------------------------------------------
-" System settings
-"  --------------------------------------------------------------
-filetype on
-filetype plugin on 
-filetype indent on 
-syntax on
-syntax enable 
+"--------------------------------------------------------------------
+" Editor settings
+"--------------------------------------------------------------------
+filetype plugin indent on
+syntax on 
+syntax enable
+
+let g:netrw_list_hide= '.*\.swp$,.*\.pyc,ENV,.git/,.*\.map'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set background=dark
-colorscheme Base2Tone_PoolDark
+colorscheme jellybeans
 
-" vim-airlien
+"--------------------------------------------------------------------
+"  Vim airline config
+"--------------------------------------------------------------------
 function! AirlineInit()
 	let g:airline_mode_map = {
 				\ '__' : '-',
@@ -105,38 +185,39 @@ function! AirlineInit()
 	let g:airline_section_y = airline#section#create_right([''])
 	let g:airline_section_z = airline#section#create_right(['%l %c'])
 	AirlineToggleWhitespace
-	AirlineTheme papercolor
+	AirlineTheme jellybeans
 endfunction
 autocmd VimEnter * call AirlineInit()
 
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
-" set clipboard=unnamed " use OS clipboard
+"--------------------------------------------------------------------
+" Configure Syntastic
+"--------------------------------------------------------------------
+let g:syntastic_cpp_compiler = 'g++-4.9'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+" Disable for markdown files
+let g:syntastic_disabled_filetypes=['markdown'] 
+let g:syntastic_python_flake8_args = "--ignore=W191,W293,E101,E126,E127,E128,E221,E226,E227,E228,E231,E241,E261,E262,E265,E272,E301,E302,E501"
 
-" ---------------------------------------------------------------
-"  File management settings 
-"  --------------------------------------------------------------
-set nowritebackup 
+
+" indentLine
+let g:indentLine_color_term = 237
+let g:indentLine_char = '┆'
 
 " Don't use swap files
 set noswapfile                      
-set history=1000
-set undolevels=1000
-
-" ---------------------------------------------------------------
-"  Text format and indentation settings
-"  --------------------------------------------------------------
-
-" Allow backspace in insert mode
-set backspace=indent,eol,start
-
+" Remember last 50 commands
+set history=50 
+" Can undo 50 times
+set undolevels=50
+" Backspace
+set bs=2
 " Tab configuration
 set expandtab 
 set shiftwidth=4
 set tabstop=4
-set smarttab 
-set smartindent
+set softtabstop=4
 
+" set clipboard=unnamed,unnamedplus
 
 " show line number
 " set ruler
@@ -155,22 +236,24 @@ set modelines=4
 "Show the filename in the window titlebar
 set title               
 
+" Split default right bottom
+set splitbelow
+set splitright
 
 " Auto indent
 set autoindent
 
+" Tell vim to shutup!
+set visualbell		
+" Tell vim to shutup
+set noerrorbells	
+
+
 " Show list of files instead of autocomplete
 set wildmode=list:longest,list:full		
 
-" ---------------------------------------------------------------
-"  Line settings
-"  --------------------------------------------------------------
 set number                            " Show line number
 set cursorline                        " Highlight current line
-
-" ---------------------------------------------------------------
-"  Searching settings
-"  --------------------------------------------------------------
 
 " Ignore case of searches
 set ignorecase
@@ -179,32 +262,15 @@ set smartcase
 " Highlight dynamically as pattern is typed
 set incsearch
 
-
 " Open new split panes to right and bottom
 set splitbelow
 set splitright
 
-" ---------------------------------------------------------------
+"--------------------------------------------------------------------
 "  Key binding
-"  --------------------------------------------------------------
+"--------------------------------------------------------------------
 
 nnoremap <c-p> :CtrlP<CR>                 
-
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
-
-" ctrlp should ignore things in .gitignore
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-"Syntax highlight htmlcss
-let g:javascript_enable_domhtmlcss = 1
-let g:javascript_ignore_javaScriptdoc = 1
-
-" Highlight jsx in .js file
-let g:jsx_ext_required = 0
-
-
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
 
 " Bind better moving between panes
 nnoremap <C-J> <C-W><C-J>
@@ -213,20 +279,55 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 
-"" Config typescript syntax custom indent
-let g:typescript_indent_disable = 1
 
 if !has('nvim')
 	set ttymouse=xterm2
 endif
 
-if $TMUX == ''
-	set clipboard=unnamed
-endif
-
-
-" set term=screen-256color
+set term=screen-256color
 set t_Co=256
 
 "" Configure ejs syntax highlight
 " au BufNewFile,BufRead *.ejs set filetype=html
+"
+" Disable ~ when inside tmux, as Ctrl + PageUp/Down are translated to 5~
+if &term =~ '^screen'
+	map ~ <Nop>
+endif
+
+
+function! CPPSET()
+	set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=gnu++0x\ -O2\ -g\ -Wall\ -Wextra\ -o\ %<\ %;fi;fi
+	set cindent
+	set nowrap
+	nnoremap <buffer> <F9> :w<cr>:!g++ -O2 % -o %< -std=c++11 -I ./<cr>:!./%<<cr>
+	nnoremap <buffer> <F8> :w<cr>:!g++ -Wall -Wextra -Wshadow -O2 % -o %< -std=c++11 -I ./<cr>
+endfunction
+
+function! VIMSET()
+	set nowrap
+	set tabstop=2
+	set softtabstop=2
+	set shiftwidth=2
+endfunction
+
+function! TYPESCRIPTSET()
+	let g:typescript_indent_disable = 1
+endfunction
+
+function! JAVASCRIPTSET() 
+	"Syntax highlight htmlcss
+	let g:javascript_enable_domhtmlcss = 1
+	let g:javascript_ignore_javaScriptdoc = 1
+	" Highlight jsx in .js file
+	let g:jsx_ext_required = 0
+endfunction
+
+"--------------------------------------------------------------------
+" Load configurations for each file types
+"--------------------------------------------------------------------
+autocmd FileType cc         call CPPSET()
+autocmd FileType cpp        call CPPSET()
+autocmd FileType vim		call VIMSET()
+autocmd FileType typescript call TYPESCRIPTSET()
+autocmd FileType javascript call JAVASCRIPTSET()
