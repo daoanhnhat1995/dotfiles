@@ -329,6 +329,10 @@ function! JAVASCRIPTSET()
 	let g:jsx_ext_required = 0
 endfunction
 
+function! GOSET()
+	" format with goimports instead of gofmt
+	let g:go_fmt_command = "goimports"
+endfunction
 
 let g:loaded_python_provider=1
 let g:loaded_python3_provider=1
@@ -338,6 +342,7 @@ let g:loaded_python3_provider=1
 "--------------------------------------------------------------------
 autocmd FileType cc         call CPPSET()
 autocmd FileType cpp        call CPPSET()
-autocmd FileType vim		call VIMSET()
+autocmd FileType vim				call VIMSET()
 autocmd FileType typescript call TYPESCRIPTSET()
 autocmd FileType javascript call JAVASCRIPTSET()
+autocmd FileType go					call GOSET()
