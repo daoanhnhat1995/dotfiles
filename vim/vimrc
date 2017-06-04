@@ -31,6 +31,7 @@ Plugin 'tpope/vim-fugitive'
 "--------------------------------------------------------------------
 Plugin 'tpope/vim-surround' 
 
+
 "--------------------------------------------------------------------
 " Automatically insert 'end' for ruby methods
 "
@@ -55,6 +56,11 @@ Plugin 'tpope/vim-unimpaired'
 " Allow using '.' to paste an action performed before
 "--------------------------------------------------------------------
 Bundle 'tpope/vim-repeat'
+
+"--------------------------------------------------------------------
+"Async Make
+"--------------------------------------------------------------------
+Bundle "tpope/vim-dispatch"
 
 "--------------------------------------------------------------------
 " Fuzzy file, buffer, mru and tag finder
@@ -114,7 +120,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 "--------------------------------------------------------------------
 " Better git diff
 "--------------------------------------------------------------------
-Plugin 'airblade/vim-gitgutter'							
+" Plugin 'airblade/vim-gitgutter'							
 
 
 "--------------------------------------------------------------------
@@ -322,6 +328,10 @@ function! JAVASCRIPTSET()
 	" Highlight jsx in .js file
 	let g:jsx_ext_required = 0
 endfunction
+
+
+let g:loaded_python_provider=1
+let g:loaded_python3_provider=1
 
 "--------------------------------------------------------------------
 " Load configurations for each file types
