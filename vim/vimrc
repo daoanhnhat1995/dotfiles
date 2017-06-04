@@ -203,11 +203,6 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 " Disable for markdown files
 let g:syntastic_disabled_filetypes=['markdown'] 
 
-
-" indentLine
-let g:indentLine_color_term = 237
-let g:indentLine_char = '┆'
-
 " Don't use swap files
 set noswapfile                      
 " Remember last 50 commands
@@ -289,7 +284,7 @@ if !has('nvim')
 	set ttymouse=xterm2
 endif
 
-set term=screen-256color
+" set term=screen-256color
 set t_Co=256
 
 "" Configure ejs syntax highlight
