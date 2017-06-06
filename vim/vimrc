@@ -69,8 +69,8 @@ Plugin 'kien/ctrlp.vim'
 
 "--------------------------------------------------------------------
 " Always highlight enclosing tags
-"--------------------------------------------------------------------
-Plugin 'Valloric/MatchTagAlways'
+" "--------------------------------------------------------------------
+" Plugin 'Valloric/MatchTagAlways'
 
 
 "--------------------------------------------------------------------
@@ -303,11 +303,9 @@ endif
 
 
 function! CPPSET()
-	set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=gnu++0x\ -O2\ -g\ -Wall\ -Wextra\ -o\ %<\ %;fi;fi
+	set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=c++11\ -O2\ -o\ %<\ %;fi;fi
 	set cindent
 	set nowrap
-	nnoremap <buffer> <F9> :w<cr>:!g++ -O2 % -o %< -std=c++11 -I ./<cr>:!./%<<cr>
-	nnoremap <buffer> <F8> :w<cr>:!g++ -Wall -Wextra -Wshadow -O2 % -o %< -std=c++11 -I ./<cr>
 endfunction
 
 function! VIMSET()
