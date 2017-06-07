@@ -1,5 +1,5 @@
 export CLICOLOR=1
-export PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
+
 # added by Anaconda3 4.2.0 installer
 export PATH="/Users/nhatdao/anaconda3/bin:$PATH"
 
@@ -13,12 +13,12 @@ export NVM_DIR="/usr/local/opt/nvm"
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# export PATH="/usr/local/heroku/bin:$PATH"
 
 # Manage Ruby versions with rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
 
 
 
