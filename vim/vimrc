@@ -137,10 +137,6 @@ Plugin 'mxw/vim-jsx'
 " Colors and themese
 "--------------------------------------------------------------------
 Bundle 'nanotech/jellybeans.vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'brendonrapp/smyck-vim'
-
-Bundle 'noahfrederick/vim-noctu'
 
 "--------------------------------------------------------------------
 " Display line status at the bottom of screen
@@ -170,7 +166,7 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set background=dark
-colorscheme base16-monokai
+colorscheme jellybeans
 
 "--------------------------------------------------------------------
 "  Vim airline config
@@ -198,7 +194,7 @@ function! AirlineInit()
 	let g:airline_section_y = airline#section#create_right([''])
 	let g:airline_section_z = airline#section#create_right(['%l %c'])
 	AirlineToggleWhitespace
-	AirlineTheme base16
+	AirlineTheme jellybeans
 endfunction
 autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
@@ -289,6 +285,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 
+set path+=**
 
 if !has('nvim')
 	set ttymouse=xterm2
