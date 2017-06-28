@@ -70,7 +70,7 @@ Plugin 'kien/ctrlp.vim'
 "--------------------------------------------------------------------
 " Always highlight enclosing tags
 " "--------------------------------------------------------------------
-" Plugin 'Valloric/MatchTagAlways'
+Plugin 'Valloric/MatchTagAlways'
 
 
 "--------------------------------------------------------------------
@@ -137,6 +137,7 @@ Plugin 'mxw/vim-jsx'
 " Colors and themese
 "--------------------------------------------------------------------
 Bundle 'nanotech/jellybeans.vim'
+Bundle 'jackiehluo/vim-material'
 
 "--------------------------------------------------------------------
 " Display line status at the bottom of screen
@@ -166,7 +167,7 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set background=dark
-colorscheme jellybeans
+colorscheme material
 
 "--------------------------------------------------------------------
 "  Vim airline config
@@ -194,7 +195,7 @@ function! AirlineInit()
 	let g:airline_section_y = airline#section#create_right([''])
 	let g:airline_section_z = airline#section#create_right(['%l %c'])
 	AirlineToggleWhitespace
-	AirlineTheme jellybeans
+	AirlineTheme xtermlight
 endfunction
 autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
