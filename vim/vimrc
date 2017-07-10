@@ -136,8 +136,8 @@ Plugin 'mxw/vim-jsx'
 "--------------------------------------------------------------------
 " Colors and themese
 "--------------------------------------------------------------------
-Bundle 'nanotech/jellybeans.vim'
 Bundle 'jackiehluo/vim-material'
+
 
 "--------------------------------------------------------------------
 " Display line status at the bottom of screen
@@ -224,7 +224,7 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 
-" set clipboard=unnamed,unnamedplus
+set clipboard=unnamed,unnamedplus
 
 " show line number
 " set ruler
