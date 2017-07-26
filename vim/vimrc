@@ -84,7 +84,9 @@ Plugin 'Raimondi/delimitMate'
 "--------------------------------------------------------------------
 " Language support plugins:
 "--------------------------------------------------------------------
-
+" JS Flow
+"
+Plugin 'flowtype/vim-flow'
 
 "--------------------------------------------------------------------
 " Utilities for Rails development
@@ -104,7 +106,9 @@ Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 "--------------------------------------------------------------------
 " Syntax checking
 "--------------------------------------------------------------------
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
+Plugin 'millermedeiros/vim-esformatter'
+
 
 "--------------------------------------------------------------------
 " Syntax enforcement for typescript
@@ -204,11 +208,8 @@ set laststatus=2
 "--------------------------------------------------------------------
 " Configure Syntastic
 "--------------------------------------------------------------------
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
-" Disable for markdown files
-let g:syntastic_disabled_filetypes=['markdown'] 
+map <C-l> :SyntasticCheck<cr>
 
 " Don't use swap files
 set noswapfile                      
@@ -305,6 +306,8 @@ endif
 
 
 function! CPPSET()
+	let g:syntastic_cpp_compiler = 'clang++'
+	let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 	set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=c++11\ -O2\ -o\ %<.out\ %;fi;fi
 	set cindent
 	set nowrap
@@ -327,6 +330,17 @@ function! JAVASCRIPTSET()
 	let g:javascript_ignore_javaScriptdoc = 1
 	" Highlight jsx in .js file
 	let g:jsx_ext_required = 0
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
+
+	let g:syntastic_javascript_checkers = ['eslint']
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 0
+	let g:syntastic_check_on_wq = 0
+	let g:syntastic_error_symbol = ">>"
+	let g:syntastic_warning_symbol = "⚠"
 endfunction
 
 function! GOSET()
@@ -336,6 +350,8 @@ endfunction
 
 let g:loaded_python_provider=1
 let g:loaded_python3_provider=1
+let g:javascript_plugin_flow = 1
+let g:flow#autoclose = 1 
 
 "--------------------------------------------------------------------
 " Load configurations for each file types
