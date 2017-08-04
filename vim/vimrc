@@ -225,7 +225,6 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 
-set clipboard=unnamed,unnamedplus
 
 " show line number
 " set ruler
@@ -362,3 +361,7 @@ autocmd FileType vim				call VIMSET()
 autocmd FileType typescript call TYPESCRIPTSET()
 autocmd FileType javascript call JAVASCRIPTSET()
 autocmd FileType go					call GOSET()
+
+if $TMUX == ''
+	set clipboard+=unnamed
+endif
