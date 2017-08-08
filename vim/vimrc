@@ -141,6 +141,7 @@ Plugin 'mxw/vim-jsx'
 " Colors and themese
 "--------------------------------------------------------------------
 Bundle 'jackiehluo/vim-material'
+Bundle 'morhetz/gruvbox'
 
 
 "--------------------------------------------------------------------
@@ -171,7 +172,7 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set background=dark
-colorscheme material
+colorscheme gruvbox
 
 "--------------------------------------------------------------------
 "  Vim airline config
@@ -199,7 +200,7 @@ function! AirlineInit()
 	let g:airline_section_y = airline#section#create_right([''])
 	let g:airline_section_z = airline#section#create_right(['%l %c'])
 	AirlineToggleWhitespace
-	AirlineTheme xtermlight
+	AirlineTheme	gruvbox
 endfunction
 autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
