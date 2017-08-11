@@ -3,7 +3,6 @@
 "--------------------------------------------------------------------
 
 
-" Unlink vi
 set nocompatible
 filetype off
 
@@ -178,29 +177,8 @@ colorscheme gruvbox
 "  Vim airline config
 "--------------------------------------------------------------------
 function! AirlineInit()
-	let g:airline_mode_map = {
-				\ '__' : '-',
-				\ 'n' : 'N',
-				\ 'i' : 'I',
-				\ 'R' : 'R',
-				\ 'c' : 'C',
-				\ 'v' : 'V',
-				\ 'V' : 'V',
-				\ 's' : 'S',
-				\ 'S' : 'S',
-				\ }
-	let g:airline_left_sep = ''
-	let g:airline_left_alt_sep= ''
-	let g:airline_right_sep = ''
-	let g:airline_right_alt_sep = ''
-	let g:airline_section_a = airline#section#create(['mode'])
-	let g:airline_section_b = airline#section#create(['%f'])
-	let g:airline_section_c = airline#section#create([''])
-	let g:airline_section_x = airline#section#create_right([''])
-	let g:airline_section_y = airline#section#create_right([''])
-	let g:airline_section_z = airline#section#create_right(['%l %c'])
 	AirlineToggleWhitespace
-	AirlineTheme	gruvbox
+	AirlineTheme	aurora
 endfunction
 autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
@@ -211,6 +189,12 @@ set laststatus=2
 "--------------------------------------------------------------------
 
 map <C-l> :SyntasticCheck<cr>
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = "⚠"
+let g:syntastic_warning_symbol = ">>"
 
 " Don't use swap files
 set noswapfile                      
@@ -221,10 +205,10 @@ set undolevels=50
 " Backspace
 set bs=2
 " Tab configuration
-set expandtab 
-set shiftwidth=2
 set tabstop=2
-set softtabstop=2
+set shiftwidth=2
+set expandtab 
+" set smarttab
 
 
 " show line number
@@ -290,7 +274,7 @@ nnoremap <C-H> <C-W><C-H>
 set path+=**
 
 if !has('nvim')
-	set ttymouse=xterm2
+  set ttymouse=xterm2
 endif
 
 " set term=screen-256color
@@ -301,57 +285,65 @@ set t_Co=256
 "
 " Disable ~ when inside tmux, as Ctrl + PageUp/Down are translated to 5~
 if &term =~ '^screen'
-	map ~ <Nop>
+  map ~ <Nop>
 endif
 
 
 function! CPPSET()
-	let g:syntastic_cpp_compiler = 'clang++'
-	let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-	set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=c++11\ -O2\ -o\ %<.out\ %;fi;fi
-	set cindent
-	set nowrap
+  let g:syntastic_cpp_compiler = 'clang++'
+  let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+  set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=c++11\ -O2\ -o\ %<.out\ %;fi;fi
+  set cindent
+  set nowrap
 endfunction
 
 function! VIMSET()
-	set nowrap
-	set tabstop=2
-	set softtabstop=2
-	set shiftwidth=2
+  " set nowrap
+  " set tabstop=2
+  " set softtabstop=2
+  " set shiftwidth=2
+  set tabstop=2
+  set shiftwidth=2
+  set expandtab 
 endfunction
 
 function! TYPESCRIPTSET()
-	let g:typescript_indent_disable = 1
+  let g:typescript_indent_disable = 1
 endfunction
 
+let g:jsx_ext_required = 0
 function! JAVASCRIPTSET() 
-	"Syntax highlight htmlcss
-	let g:javascript_enable_domhtmlcss = 1
-	let g:javascript_ignore_javaScriptdoc = 1
-	" Highlight jsx in .js file
-	let g:jsx_ext_required = 0
-	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
-	set statusline+=%*
+  set tabstop=2
+  set shiftwidth=2
+  set expandtab 
+  "Syntax highlight htmlcss
+  let g:javascript_enable_domhtmlcss = 1
+  let g:javascript_ignore_javaScriptdoc = 1
+  " Highlight jsx in .js file
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
 
-	let g:syntastic_javascript_checkers = ['eslint']
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_open = 0
-	let g:syntastic_check_on_wq = 0
-	let g:syntastic_error_symbol = ">>"
-	let g:syntastic_warning_symbol = "⚠"
+  let g:syntastic_javascript_checkers = ['eslint']
 endfunction
 
 function! GOSET()
-	" format with goimports instead of gofmt
-	let g:go_fmt_command = "goimports"
+  " format with goimports instead of gofmt
+  let g:go_fmt_command = "goimports"
 endfunction
 
 let g:loaded_python_provider=1
 let g:loaded_python3_provider=1
 let g:javascript_plugin_flow = 1
 let g:flow#autoclose = 1 
+
+let g:mta_filetypes = {
+    \'javascript.jsx': 1,
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+		\}
 
 "--------------------------------------------------------------------
 " Load configurations for each file types
