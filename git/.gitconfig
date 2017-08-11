@@ -14,7 +14,12 @@
 [color]
 	ui = true
 [alias]
+	ll   = log --pretty=oneline --abbrev-commit
 	graph= log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+	lg   = log --pretty=oneline --abbrev-commit --graph --decorate --date=relative
+	lgt  = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	lgtt = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+
 	st = status
 	a = add
 	aa = add --all
@@ -25,3 +30,4 @@
 	nb = checkout -b
 [core]
 	excludesfile = /Users/nhatdao/.gitignore_global
+	editor = /usr/bin/vim
