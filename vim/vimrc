@@ -36,7 +36,6 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " Automatically insert 'end' for ruby methods
 "
 "--------------------------------------------------------------------
-" Plugin 'tpope/vim-endwise'
 
 "--------------------------------------------------------------------
 " Comment a block helper
@@ -51,6 +50,10 @@ Plugin 'tomtom/tcomment_vim'
 " Auto map brackets as typing
 "--------------------------------------------------------------------
 Plugin 'tpope/vim-unimpaired'              
+
+Plugin 'mileszs/ack.vim'
+Plugin 'wincent/ferret'
+
 
 "--------------------------------------------------------------------
 " Allow using '.' to paste an action performed before
@@ -187,6 +190,9 @@ autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
 set laststatus=2
 
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+
 "--------------------------------------------------------------------
 " Configure Syntastic
 "--------------------------------------------------------------------
@@ -196,8 +202,8 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = "⚠"
-let g:syntastic_warning_symbol = ">>"
+let g:syntastic_error_symbol = "✕"
+let g:syntastic_warning_symbol = "!!"
 
 " Don't use swap files
 set noswapfile                      
