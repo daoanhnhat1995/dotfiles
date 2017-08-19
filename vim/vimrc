@@ -30,13 +30,12 @@ Plugin 'tpope/vim-fugitive'
 "--------------------------------------------------------------------
 Plugin 'tpope/vim-surround' 
 
-Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Yggdroot/indentLine'
 
 "--------------------------------------------------------------------
 " Automatically insert 'end' for ruby methods
 "
 "--------------------------------------------------------------------
-" Plugin 'tpope/vim-endwise'
 
 "--------------------------------------------------------------------
 " Comment a block helper
@@ -51,6 +50,10 @@ Plugin 'tomtom/tcomment_vim'
 " Auto map brackets as typing
 "--------------------------------------------------------------------
 Plugin 'tpope/vim-unimpaired'              
+
+Plugin 'mileszs/ack.vim'
+Plugin 'wincent/ferret'
+
 
 "--------------------------------------------------------------------
 " Allow using '.' to paste an action performed before
@@ -163,6 +166,8 @@ filetype plugin indent on
 syntax on 
 syntax enable
 
+let g:indentLine_color_term = 239
+
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc,ENV,.git/,.*\.map'
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
 
@@ -187,6 +192,9 @@ autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
 set laststatus=2
 
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+
 "--------------------------------------------------------------------
 " Configure Syntastic
 "--------------------------------------------------------------------
@@ -196,8 +204,8 @@ let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = "⚠"
-let g:syntastic_warning_symbol = ">>"
+let g:syntastic_error_symbol = "✕"
+let g:syntastic_warning_symbol = "!!"
 
 " Don't use swap files
 set noswapfile                      
@@ -315,6 +323,7 @@ function! TYPESCRIPTSET()
 endfunction
 
 let g:jsx_ext_required = 0
+
 function! JAVASCRIPTSET() 
   set tabstop=2
   set shiftwidth=2
