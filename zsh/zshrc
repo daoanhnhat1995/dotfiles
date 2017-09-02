@@ -1,8 +1,8 @@
 export ZSH=~/.oh-my-zsh
 
-ZSH_THEME="lambda"
+ZSH_THEME="blinks" 
 
-plugins=(vi-mode zsh-autosuggestions)
+plugins=(vi-mode zsh-autosuggestions git-open)
 
 # User configuration
 
