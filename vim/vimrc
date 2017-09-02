@@ -182,6 +182,7 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+set incsearch
 set background=dark
 colorscheme gruvbox
 
@@ -363,6 +364,13 @@ let g:mta_filetypes = {
 
 "Over write prettier rules
 let g:prettier#config#bracket_spacing = 'true' 
+
+"--------------------------------------------------------------------
+" Match tags always
+"--------------------------------------------------------------------
+let g:mta_use_matchparen_group = 1
+let g:mta_set_default_matchtag_color = 0
+hi MatchParen ctermfg=white ctermbg=lightblue guifg=white guibg=lightblue
 
 "--------------------------------------------------------------------
 " Load configurations for each file types
