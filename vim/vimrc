@@ -35,6 +35,7 @@ Plugin 'prettier/vim-prettier', {
 	\ 'do': 'yarn install',
 	\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 
+Plugin 'kien/rainbow_parentheses.vim'
 
 "--------------------------------------------------------------------
 " Automatically insert 'end' for ruby methods
@@ -149,6 +150,8 @@ Plugin 'mxw/vim-jsx'
 " Colors and themese
 "--------------------------------------------------------------------
 Bundle 'jackiehluo/vim-material'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'nanotech/jellybeans.vim'
 Plugin 'dracula/vim'
 Bundle 'morhetz/gruvbox'
 
@@ -184,7 +187,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set incsearch
 set background=dark
-colorscheme gruvbox
+colorscheme solarized
 
 "--------------------------------------------------------------------
 "  Vim airline config
