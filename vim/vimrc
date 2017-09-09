@@ -187,14 +187,14 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set incsearch
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 "--------------------------------------------------------------------
 "  Vim airline config
 "--------------------------------------------------------------------
 function! AirlineInit()
 	AirlineToggleWhitespace
-	AirlineTheme dracula
+	AirlineTheme solarized
 endfunction
 autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
