@@ -139,6 +139,7 @@ Plugin 'mxw/vim-jsx'
 "--------------------------------------------------------------------
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'morhetz/gruvbox'
+Bundle 'dracula/vim'
 
 "--------------------------------------------------------------------
 " Display line status at the bottom of screen
@@ -176,14 +177,14 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set incsearch
 set background=dark
-colorscheme gruvbox
+colorscheme dracula
 
 "--------------------------------------------------------------------
 "  Vim airline config
 "--------------------------------------------------------------------
 function! AirlineInit()
 	AirlineToggleWhitespace
-	AirlineTheme solarized
+	AirlineTheme kalisi
 endfunction
 autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
