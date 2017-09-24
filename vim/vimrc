@@ -118,15 +118,11 @@ Plugin 'leafgarland/typescript-vim' "Support for typescript
 Plugin 'christoomey/vim-tmux-navigator'    
 
 "--------------------------------------------------------------------
-" Better git diff
-"--------------------------------------------------------------------
-Plugin 'airblade/vim-gitgutter'							
-
-
-"--------------------------------------------------------------------
 " Javascript syntax enforcement
 "--------------------------------------------------------------------
 Plugin 'pangloss/vim-javascript'
+
+Plugin 'AndrewRadev/splitjoin.vim'
 
 Bundle 'moll/vim-node'
 "--------------------------------------------------------------------
@@ -232,6 +228,11 @@ set cursorline          " Highlight current line
 set ignorecase          " Ignore case of searches
 set smartcase
 set incsearch           " Highlight dynamically as pattern is typed
+set hlsearch
+set noshowmode          " Airline will show this
+set nostartofline       " Don't reset cursor to start of line when moving around
+set ofu=syntaxcomplete#Complete " Set omni-completion method
+set ttymouse=xterm
 
 
 "--------------------------------------------------------------------
@@ -284,6 +285,10 @@ set t_Co=256
 " Disable ~ when inside tmux, as Ctrl + PageUp/Down are translated to 5~
 if &term =~ '^screen'
   map ~ <Nop>
+endif
+
+if $TMUX == ''
+  set clipboard+=unnamed
 endif
 
 
@@ -344,8 +349,6 @@ let g:prettier#config#bracket_spacing = 'true'
 let g:mta_use_matchparen_group = 1
 let g:mta_set_default_matchtag_color = 0
 hi MatchParen ctermfg=white ctermbg=lightblue guifg=white guibg=lightblue
-
-
 
 "--------------------------------------------------------------------
 " Load configurations for each file types
