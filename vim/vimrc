@@ -138,6 +138,7 @@ Plugin 'mxw/vim-jsx'
 " Colors and themese
 "--------------------------------------------------------------------
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'jackiehluo/vim-material'
 Bundle 'morhetz/gruvbox'
 Bundle 'dracula/vim'
 
@@ -166,9 +167,17 @@ syntax enable
 let g:indentLine_color_term = 239
 
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc,ENV,.git/,.*\.map'
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
 
+" Ctrlp.vim {{{
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache, to improve CtrlP startup
+let g:ctrlp_match_window_bottom = 0 " Show at top of window
+let g:ctrlp_max_files = 0 " Set no file limit, we are building a big project
+let g:ctrlp_switch_buffer = 'Et' " Jump to tab AND buffer if already open
+let g:ctrlp_open_new_file = 'r' " Open newly created files in the current window
+let g:ctrlp_open_multiple_files = 'ij' " Open multiple files in hidden buffers, and jump to the first one
+" }}}
 
 " Override netrw settings to show line numbers
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
@@ -177,7 +186,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set incsearch
 set background=dark
-colorscheme dracula
+colorscheme material
 
 "--------------------------------------------------------------------
 "  Vim airline config
@@ -335,6 +344,7 @@ let g:prettier#config#bracket_spacing = 'true'
 let g:mta_use_matchparen_group = 1
 let g:mta_set_default_matchtag_color = 0
 hi MatchParen ctermfg=white ctermbg=lightblue guifg=white guibg=lightblue
+
 
 
 "--------------------------------------------------------------------
