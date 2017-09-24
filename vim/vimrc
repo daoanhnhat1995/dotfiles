@@ -15,11 +15,6 @@ call vundle#begin()
 "--------------------------------------------------------------------
 Plugin 'VundleVim/Vundle.vim'
 
-
-"--------------------------------------------------------------------
-"Plugins installed list
-"--------------------------------------------------------------------
-
 "--------------------------------------------------------------------
 "Interact with Git within vim, :Gstatus ...
 "--------------------------------------------------------------------
@@ -37,10 +32,6 @@ Plugin 'prettier/vim-prettier', {
 
 Plugin 'kien/rainbow_parentheses.vim'
 
-"--------------------------------------------------------------------
-" Automatically insert 'end' for ruby methods
-"
-"--------------------------------------------------------------------
 
 "--------------------------------------------------------------------
 " Comment a block helper
@@ -56,7 +47,14 @@ Plugin 'tomtom/tcomment_vim'
 "--------------------------------------------------------------------
 Plugin 'tpope/vim-unimpaired'              
 
+"--------------------------------------------------------------------
+" Fuzzy search all files
+"--------------------------------------------------------------------
 Plugin 'mileszs/ack.vim'
+
+"--------------------------------------------------------------------
+" Ack enhancement
+"--------------------------------------------------------------------
 Plugin 'wincent/ferret'
 
 
@@ -80,7 +78,6 @@ Plugin 'kien/ctrlp.vim'
 " "--------------------------------------------------------------------
 Plugin 'Valloric/MatchTagAlways'
 
-
 "--------------------------------------------------------------------
 " Display a nerd tree on the left side
 " :NerdTree
@@ -88,13 +85,6 @@ Plugin 'Valloric/MatchTagAlways'
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'Raimondi/delimitMate'
-
-"--------------------------------------------------------------------
-" Language support plugins:
-"--------------------------------------------------------------------
-" JS Flow
-"
-Plugin 'flowtype/vim-flow'
 
 "--------------------------------------------------------------------
 " Utilities for Rails development
@@ -117,7 +107,6 @@ Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plugin 'scrooloose/syntastic'
 Plugin 'millermedeiros/vim-esformatter'
 
-
 "--------------------------------------------------------------------
 " Syntax enforcement for typescript
 "--------------------------------------------------------------------
@@ -128,17 +117,12 @@ Plugin 'leafgarland/typescript-vim' "Support for typescript
 "--------------------------------------------------------------------
 Plugin 'christoomey/vim-tmux-navigator'    
 
-
-"--------------------------------------------------------------------
-" Better git diff
-"--------------------------------------------------------------------
-" Plugin 'airblade/vim-gitgutter'							
-
-
 "--------------------------------------------------------------------
 " Javascript syntax enforcement
 "--------------------------------------------------------------------
 Plugin 'pangloss/vim-javascript'
+
+Plugin 'AndrewRadev/splitjoin.vim'
 
 Bundle 'moll/vim-node'
 "--------------------------------------------------------------------
@@ -149,18 +133,21 @@ Plugin 'mxw/vim-jsx'
 "--------------------------------------------------------------------
 " Colors and themese
 "--------------------------------------------------------------------
-Bundle 'jackiehluo/vim-material'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'nanotech/jellybeans.vim'
-Plugin 'dracula/vim'
+Bundle 'jackiehluo/vim-material'
 Bundle 'morhetz/gruvbox'
-
+Bundle 'dracula/vim'
 
 "--------------------------------------------------------------------
 " Display line status at the bottom of screen
 "--------------------------------------------------------------------
 Bundle 'bling/vim-airline'  
 Bundle 'vim-airline/vim-airline-themes'
+
+"--------------------------------------------------------------------
+" Fancy vim startup window
+"--------------------------------------------------------------------
+Plugin 'mhinz/vim-startify'
 
 call vundle#end()            
 
@@ -176,9 +163,17 @@ syntax enable
 let g:indentLine_color_term = 239
 
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc,ENV,.git/,.*\.map'
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
 
+" Ctrlp.vim {{{
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache, to improve CtrlP startup
+let g:ctrlp_match_window_bottom = 0 " Show at top of window
+let g:ctrlp_max_files = 0 " Set no file limit, we are building a big project
+let g:ctrlp_switch_buffer = 'Et' " Jump to tab AND buffer if already open
+let g:ctrlp_open_new_file = 'r' " Open newly created files in the current window
+let g:ctrlp_open_multiple_files = 'ij' " Open multiple files in hidden buffers, and jump to the first one
+" }}}
 
 " Override netrw settings to show line numbers
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
@@ -187,19 +182,61 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set incsearch
 set background=dark
-colorscheme solarized
+colorscheme material
 
 "--------------------------------------------------------------------
 "  Vim airline config
 "--------------------------------------------------------------------
 function! AirlineInit()
 	AirlineToggleWhitespace
-	AirlineTheme dracula
+	AirlineTheme kalisi
 endfunction
 autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
 set laststatus=2
 
+
+"--------------------------------------------------------------------
+"  Formatting configs
+"--------------------------------------------------------------------
+set clipboard=unnamed
+set noswapfile                      
+set history=50 
+set undolevels=50
+set bs=2
+set tabstop=2
+set shiftwidth=2
+set expandtab 
+" show line number
+" set ruler
+set showcmd
+set autowrite
+set wildmenu            " Enable commandline complete
+set noeol
+set binary              " Done add empty new lines
+set modeline            " Respect modeline in files
+set modelines=4
+set title               "Show the filename in the window titlebar
+set splitbelow          " Split default right bottom
+set splitright
+set autoindent
+set visualbell		
+set noerrorbells	
+set wildmode=list:longest,list:full		" Show list of files instead of autocomplete
+set number              " Show line number
+set cursorline          " Highlight current line
+set ignorecase          " Ignore case of searches
+set smartcase
+set incsearch           " Highlight dynamically as pattern is typed
+set noshowmode          " Airline will show this
+set nostartofline       " Don't reset cursor to start of line when moving around
+set ofu=syntaxcomplete#Complete " Set omni-completion method
+set ttymouse=xterm
+
+
+"--------------------------------------------------------------------
+"  Ack Vim config
+"--------------------------------------------------------------------
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 
@@ -207,7 +244,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " Configure Syntastic
 "--------------------------------------------------------------------
 
-map <C-l> :SyntasticCheck<cr>
+nnoremap <c-l> :SyntasticCheck<CR>
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
@@ -215,67 +252,11 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = "✕"
 let g:syntastic_warning_symbol = "!!"
 
-" Don't use swap files
-set noswapfile                      
-" Remember last 50 commands
-set history=50 
-" Can undo 50 times
-set undolevels=50
-" Backspace
-set bs=2
-" Tab configuration
-set tabstop=2
-set shiftwidth=2
-set expandtab 
-" set smarttab
-
-
-" show line number
-" set ruler
-set showcmd
-set autowrite
-
-"Enable commandline complete
-set wildmenu            
-set noeol
-
-" Done add empty new lines
-set binary              
-" Respect modeline in files
-set modeline            
-set modelines=4
-"Show the filename in the window titlebar
-set title               
-
-" Split default right bottom
-set splitbelow
-set splitright
-
-" Auto indent
-set autoindent
-
-" Tell vim to shutup!
-set visualbell		
-" Tell vim to shutup
-set noerrorbells	
-
-
-" Show list of files instead of autocomplete
-set wildmode=list:longest,list:full		
-
-set number                            " Show line number
-set cursorline                        " Highlight current line
-
-" Ignore case of searches
-set ignorecase
-set smartcase
-
-" Highlight dynamically as pattern is typed
-set incsearch
-
-" Open new split panes to right and bottom
-set splitbelow
-set splitright
+"--------------------------------------------------------------------
+" Customize :find
+" Put all files into find's buffer for fuzzy search 
+"--------------------------------------------------------------------
+set path+=**
 
 "--------------------------------------------------------------------
 "  Key binding
@@ -283,14 +264,6 @@ set splitright
 
 nnoremap <c-p> :CtrlP<CR>                 
 
-" Bind better moving between panes
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-
-set path+=**
 
 if !has('nvim')
   set ttymouse=xterm2
@@ -307,6 +280,10 @@ if &term =~ '^screen'
   map ~ <Nop>
 endif
 
+if $TMUX == ''
+  set clipboard+=unnamed
+endif
+
 
 function! CPPSET()
   let g:syntastic_cpp_compiler = 'clang++'
@@ -317,10 +294,6 @@ function! CPPSET()
 endfunction
 
 function! VIMSET()
-  " set nowrap
-  " set tabstop=2
-  " set softtabstop=2
-  " set shiftwidth=2
   set tabstop=2
   set shiftwidth=2
   set expandtab 
@@ -339,11 +312,6 @@ function! JAVASCRIPTSET()
   "Syntax highlight htmlcss
   let g:javascript_enable_domhtmlcss = 1
   let g:javascript_ignore_javaScriptdoc = 1
-  " Highlight jsx in .js file
-  " set statusline+=%#warningmsg#
-  " set statusline+=%{SyntasticStatuslineFlag()}
-  " set statusline+=%*
-
   let g:syntastic_javascript_checkers = ['eslint']
 endfunction
 
@@ -358,12 +326,12 @@ let g:javascript_plugin_flow = 1
 let g:flow#autoclose = 1 
 
 let g:mta_filetypes = {
-    \'javascript.jsx': 1,
-    \ 'html' : 1,
-    \ 'xhtml' : 1,
-    \ 'xml' : 1,
-    \ 'jinja' : 1,
-		\}
+      \'javascript.jsx': 1,
+      \ 'html' : 1,
+      \ 'xhtml' : 1,
+      \ 'xml' : 1,
+      \ 'jinja' : 1,
+      \}
 
 "Over write prettier rules
 let g:prettier#config#bracket_spacing = 'true' 
@@ -384,7 +352,3 @@ autocmd FileType vim				call VIMSET()
 autocmd FileType typescript call TYPESCRIPTSET()
 autocmd FileType javascript call JAVASCRIPTSET()
 autocmd FileType go					call GOSET()
-
-if $TMUX == ''
-	set clipboard+=unnamed
-endif
