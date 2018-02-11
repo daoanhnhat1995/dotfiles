@@ -28,6 +28,7 @@
 	br = branch
 	co = checkout
 	nb = checkout -b
+	gm = git merge --no-ff
 [core]
 	excludesfile = /Users/nhatdao/.gitignore_global
 	editor = /usr/bin/vim

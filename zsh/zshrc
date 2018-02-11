@@ -1,8 +1,8 @@
 export ZSH=~/.oh-my-zsh
 
-ZSH_THEME="blinks"
+ZSH_THEME="lambda"
 
-plugins=(vi-mode git-open zsh-autosuggestions)
+plugins=(vi-mode git-open zsh-autosuggestions kubectl minikube)
 
 # User configuration
 
@@ -28,4 +28,7 @@ export NPM_AUTH_TOKEN="fd59df14-5bf9-43c5-9268-fa98c97ba235"
 alias pg-start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 alias pg-stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 
-
+# alias kb=kubectl
+# alias mk=minikube
+#
+# alias minikube-stop="minikube stop && eval $(minikube docker-env u)"

@@ -19,20 +19,25 @@ Plugin 'VundleVim/Vundle.vim'
 "Interact with Git within vim, :Gstatus ...
 "--------------------------------------------------------------------
 Plugin 'tpope/vim-fugitive' 
-
+Plugin 'flowtype/vim-flow'
+Plugin 'janko-m/vim-test'
 "--------------------------------------------------------------------
 "Surround tag utility
 "--------------------------------------------------------------------
 Plugin 'tpope/vim-surround' 
+Plugin 'junegunn/vim-emoji'
 
 Plugin 'Yggdroot/indentLine'
 Plugin 'prettier/vim-prettier', {
 	\ 'do': 'yarn install',
 	\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 
+Plugin 'sbdchd/neoformat'
+
 Plugin 'kien/rainbow_parentheses.vim'
-
-
+Plugin 'elzr/vim-json'
+Plugin 'wincent/terminus'
+Plugin 'Valloric/YouCompleteMe'
 "--------------------------------------------------------------------
 " Comment a block helper
 " usage:
@@ -76,7 +81,7 @@ Plugin 'kien/ctrlp.vim'
 "--------------------------------------------------------------------
 " Always highlight enclosing tags
 " "--------------------------------------------------------------------
-Plugin 'Valloric/MatchTagAlways'
+Plugin 'tmhedberg/matchit'
 
 "--------------------------------------------------------------------
 " Display a nerd tree on the left side
@@ -104,7 +109,7 @@ Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 "--------------------------------------------------------------------
 " Syntax checking
 "--------------------------------------------------------------------
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'millermedeiros/vim-esformatter'
 
 "--------------------------------------------------------------------
@@ -133,11 +138,15 @@ Plugin 'mxw/vim-jsx'
 "--------------------------------------------------------------------
 " Colors and themese
 "--------------------------------------------------------------------
-Bundle 'altercation/vim-colors-solarized'
+Bundle 'NLKNguyen/papercolor-theme'
 Bundle 'jackiehluo/vim-material'
+Bundle 'kristijanhusak/vim-hybrid-material'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'junegunn/seoul256.vim'
 Bundle 'morhetz/gruvbox'
 Bundle 'dracula/vim'
-
+Bundle 'endel/vim-github-colorscheme'
+Bundle 'sts10/vim-pink-moon'
 "--------------------------------------------------------------------
 " Display line status at the bottom of screen
 "--------------------------------------------------------------------
@@ -160,14 +169,12 @@ filetype plugin indent on
 syntax on 
 syntax enable
 
-let g:indentLine_color_term = 239
-
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc,ENV,.git/,.*\.map'
 
 " Ctrlp.vim {{{
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|plugins|platform|lib|library|bin|bower_components|target|dist|db)|(\.(swp|tmp|ico|git|svn|png|jpg))$'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache, to improve CtrlP startup
+let g:ctrlp_clear_cache_on_exit = 1 " Do not clear filenames cache, to improve CtrlP startup
 let g:ctrlp_match_window_bottom = 0 " Show at top of window
 let g:ctrlp_max_files = 0 " Set no file limit, we are building a big project
 let g:ctrlp_switch_buffer = 'Et' " Jump to tab AND buffer if already open
@@ -182,14 +189,14 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set incsearch
 set background=dark
-colorscheme material
+colorscheme gruvbox
 
 "--------------------------------------------------------------------
 "  Vim airline config
 "--------------------------------------------------------------------
 function! AirlineInit()
 	AirlineToggleWhitespace
-	AirlineTheme kalisi
+  AirlineTheme hybrid
 endfunction
 autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
@@ -208,8 +215,11 @@ set tabstop=2
 set shiftwidth=2
 set expandtab 
 " show line number
+set relativenumber
 " set ruler
 set showcmd
+set list
+set listchars=tab:▸\ ,trail:▫
 set autowrite
 set wildmenu            " Enable commandline complete
 set noeol
@@ -231,7 +241,7 @@ set incsearch           " Highlight dynamically as pattern is typed
 set noshowmode          " Airline will show this
 set nostartofline       " Don't reset cursor to start of line when moving around
 set ofu=syntaxcomplete#Complete " Set omni-completion method
-set ttymouse=xterm
+" set ttymouse=xterm
 
 
 "--------------------------------------------------------------------
@@ -239,18 +249,22 @@ set ttymouse=xterm
 "--------------------------------------------------------------------
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'jsx': ['eslint'],
+\}
 
-"--------------------------------------------------------------------
-" Configure Syntastic
-"--------------------------------------------------------------------
+let g:ale_lint_on_enter = 0
+let g:ale_open_list = 0
+let g:ale_keep_list_window_open = 0
+let g:ale_fix_on_save = 0
+let g:ale_sign_error = emoji#for('x')
+let g:ale_sign_warning = emoji#for('thumbsdown')
+let g:airline#extensions#ale#enabled = 1
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
 
-nnoremap <c-l> :SyntasticCheck<CR>
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = "✕"
-let g:syntastic_warning_symbol = "!!"
+
 
 "--------------------------------------------------------------------
 " Customize :find
@@ -267,6 +281,10 @@ nnoremap <c-p> :CtrlP<CR>
 
 if !has('nvim')
   set ttymouse=xterm2
+endif
+
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
 endif
 
 " set term=screen-256color
@@ -286,8 +304,6 @@ endif
 
 
 function! CPPSET()
-  let g:syntastic_cpp_compiler = 'clang++'
-  let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=c++11\ -O2\ -o\ %<.out\ %;fi;fi
   set cindent
   set nowrap
@@ -310,9 +326,6 @@ function! JAVASCRIPTSET()
   set shiftwidth=2
   set expandtab 
   "Syntax highlight htmlcss
-  let g:javascript_enable_domhtmlcss = 1
-  let g:javascript_ignore_javaScriptdoc = 1
-  let g:syntastic_javascript_checkers = ['eslint']
 endfunction
 
 function! GOSET()
@@ -320,10 +333,10 @@ function! GOSET()
   let g:go_fmt_command = "goimports"
 endfunction
 
-let g:loaded_python_provider=1
-let g:loaded_python3_provider=1
 let g:javascript_plugin_flow = 1
-let g:flow#autoclose = 1 
+let g:flow#autoclose = 1
+let g:flow#enable = 1
+let g:flow#showquickfix = 1
 
 let g:mta_filetypes = {
       \'javascript.jsx': 1,
@@ -332,17 +345,30 @@ let g:mta_filetypes = {
       \ 'xml' : 1,
       \ 'jinja' : 1,
       \}
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif
 
 "Over write prettier rules
-let g:prettier#config#bracket_spacing = 'true' 
-
+let g:prettier#config#bracket_spacing = 'true'
 "--------------------------------------------------------------------
 " Match tags always
 "--------------------------------------------------------------------
 let g:mta_use_matchparen_group = 1
 let g:mta_set_default_matchtag_color = 0
 hi MatchParen ctermfg=white ctermbg=lightblue guifg=white guibg=lightblue
+" set guifont=Menlo\ 16
 
+
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" let g:python_host_prog  = '/usr/bin/python'
 "--------------------------------------------------------------------
 " Load configurations for each file types
 "--------------------------------------------------------------------
