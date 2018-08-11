@@ -2,42 +2,31 @@
 " Nhat Dao ' s Vim config
 "--------------------------------------------------------------------
 
-
 set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() 
 
-"--------------------------------------------------------------------
-" Using vundle for plugin management
-" https://github.com/VundleVim/Vundle.vim
-"--------------------------------------------------------------------
 Plugin 'VundleVim/Vundle.vim'
-
+Plugin 'leafgarland/typescript-vim'
 "--------------------------------------------------------------------
 "Interact with Git within vim, :Gstatus ...
 "--------------------------------------------------------------------
-Plugin 'tpope/vim-fugitive' 
-Plugin 'flowtype/vim-flow'
-Plugin 'janko-m/vim-test'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-vinegar'
 "--------------------------------------------------------------------
 "Surround tag utility
 "--------------------------------------------------------------------
 Plugin 'tpope/vim-surround' 
 Plugin 'junegunn/vim-emoji'
-
 Plugin 'Yggdroot/indentLine'
+" Plugin 'flowtype/vim-flow'
 Plugin 'prettier/vim-prettier', {
 	\ 'do': 'yarn install',
 	\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
-
-Plugin 'sbdchd/neoformat'
-
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'elzr/vim-json'
-Plugin 'wincent/terminus'
-Plugin 'Valloric/YouCompleteMe'
 "--------------------------------------------------------------------
 " Comment a block helper
 " usage:
@@ -45,27 +34,9 @@ Plugin 'Valloric/YouCompleteMe'
 " > Comment out a block: gcap
 " > Comment out selected: gc
 "--------------------------------------------------------------------
-Plugin 'tomtom/tcomment_vim'               
-
-"--------------------------------------------------------------------
-" Auto map brackets as typing
-"--------------------------------------------------------------------
-Plugin 'tpope/vim-unimpaired'              
-
-"--------------------------------------------------------------------
-" Fuzzy search all files
-"--------------------------------------------------------------------
+Plugin 'tomtom/tcomment_vim'
 Plugin 'mileszs/ack.vim'
-
-"--------------------------------------------------------------------
-" Ack enhancement
-"--------------------------------------------------------------------
-Plugin 'wincent/ferret'
-
-
-"--------------------------------------------------------------------
-" Allow using '.' to paste an action performed before
-"--------------------------------------------------------------------
+Plugin 'wincent/ferret' "Ack enhancement
 Bundle 'tpope/vim-repeat'
 
 "--------------------------------------------------------------------
@@ -73,11 +44,9 @@ Bundle 'tpope/vim-repeat'
 "--------------------------------------------------------------------
 Bundle "tpope/vim-dispatch"
 
-"--------------------------------------------------------------------
-" Fuzzy file, buffer, mru and tag finder
-"--------------------------------------------------------------------
+" Reveal current file in OS finder
+Bundle "henrik/vim-reveal-in-finder"
 Plugin 'kien/ctrlp.vim'                     
-
 "--------------------------------------------------------------------
 " Always highlight enclosing tags
 " "--------------------------------------------------------------------
@@ -91,45 +60,22 @@ Plugin 'scrooloose/nerdtree'
 
 Plugin 'Raimondi/delimitMate'
 
-"--------------------------------------------------------------------
-" Utilities for Rails development
-"--------------------------------------------------------------------
-" Plugin 'tpope/vim-rails'                   
-
-"--------------------------------------------------------------------
-" Go utilties:
-" GoImports : to auto include libraries 
-" GoDoc : look up docs
-" GoRun 
-" ...
-"--------------------------------------------------------------------
+Plugin 'benmills/vimux'
 Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 
 "--------------------------------------------------------------------
 " Syntax checking
 "--------------------------------------------------------------------
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
 Plugin 'millermedeiros/vim-esformatter'
-
-"--------------------------------------------------------------------
-" Syntax enforcement for typescript
-"--------------------------------------------------------------------
-Plugin 'leafgarland/typescript-vim' "Support for typescript
-
-"--------------------------------------------------------------------
-" Navigate tmux sessions between vim
-"--------------------------------------------------------------------
 Plugin 'christoomey/vim-tmux-navigator'    
 
 "--------------------------------------------------------------------
 " Javascript syntax enforcement
 "--------------------------------------------------------------------
 Plugin 'pangloss/vim-javascript'
-
 Plugin 'AndrewRadev/splitjoin.vim'
-
-Bundle 'moll/vim-node'
 "--------------------------------------------------------------------
 " jsx syntax enforcement
 "--------------------------------------------------------------------
@@ -138,20 +84,16 @@ Plugin 'mxw/vim-jsx'
 "--------------------------------------------------------------------
 " Colors and themese
 "--------------------------------------------------------------------
-Bundle 'NLKNguyen/papercolor-theme'
-Bundle 'jackiehluo/vim-material'
-Bundle 'kristijanhusak/vim-hybrid-material'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'junegunn/seoul256.vim'
 Bundle 'morhetz/gruvbox'
-Bundle 'dracula/vim'
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'sts10/vim-pink-moon'
+Bundle 'crusoexia/vim-monokai'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'andreypopp/vim-colors-plain'
+Bundle 'brendonrapp/smyck-vim'
 "--------------------------------------------------------------------
 " Display line status at the bottom of screen
 "--------------------------------------------------------------------
-Bundle 'bling/vim-airline'  
-Bundle 'vim-airline/vim-airline-themes'
+" Bundle 'bling/vim-airline'
+" Bundle 'vim-airline/vim-airline-themes'
 
 "--------------------------------------------------------------------
 " Fancy vim startup window
@@ -180,6 +122,7 @@ let g:ctrlp_max_files = 0 " Set no file limit, we are building a big project
 let g:ctrlp_switch_buffer = 'Et' " Jump to tab AND buffer if already open
 let g:ctrlp_open_new_file = 'r' " Open newly created files in the current window
 let g:ctrlp_open_multiple_files = 'ij' " Open multiple files in hidden buffers, and jump to the first one
+let g:ctrlp_working_path_mode = 'ra'
 " }}}
 
 " Override netrw settings to show line numbers
@@ -187,18 +130,20 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+set pastetoggle=<F2>
 set incsearch
-set background=dark
-colorscheme gruvbox
 
+set background=dark
+set t_Co=256
+colorscheme smyck
 "--------------------------------------------------------------------
 "  Vim airline config
 "--------------------------------------------------------------------
-function! AirlineInit()
-	AirlineToggleWhitespace
-  AirlineTheme hybrid
-endfunction
-autocmd VimEnter * call AirlineInit()
+" function! AirlineInit()
+"   AirlineToggleWhitespace
+"   AirlineTheme luna
+" endfunction
+" autocmd VimEnter * call AirlineInit()
 " For vim airline to always show a status bar 
 set laststatus=2
 
@@ -206,64 +151,60 @@ set laststatus=2
 "--------------------------------------------------------------------
 "  Formatting configs
 "--------------------------------------------------------------------
-set clipboard=unnamed
-set noswapfile                      
-set history=50 
-set undolevels=50
-set bs=2
-set tabstop=2
-set shiftwidth=2
-set expandtab 
-" show line number
-set relativenumber
-" set ruler
-set showcmd
-set list
-set listchars=tab:▸\ ,trail:▫
-set autowrite
-set wildmenu            " Enable commandline complete
-set noeol
-set binary              " Done add empty new lines
-set modeline            " Respect modeline in files
-set modelines=4
-set title               "Show the filename in the window titlebar
-set splitbelow          " Split default right bottom
-set splitright
 set autoindent
-set visualbell		
-set noerrorbells	
-set wildmode=list:longest,list:full		" Show list of files instead of autocomplete
-set number              " Show line number
-set cursorline          " Highlight current line
-set ignorecase          " Ignore case of searches
-set smartcase
-set incsearch           " Highlight dynamically as pattern is typed
-set noshowmode          " Airline will show this
-set nostartofline       " Don't reset cursor to start of line when moving around
-set ofu=syntaxcomplete#Complete " Set omni-completion method
-" set ttymouse=xterm
-
+set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
+set backspace=2                                              " Fix broken backspace in some setups
+set nobackup
+set nowritebackup
+set noswapfile
+set clipboard=unnamed                                        " yank and paste with the system clipboard
+set directory-=.                                             " don't store swapfiles in the current directory
+set encoding=utf-8
+set expandtab                                                " expand tabs to spaces
+set ignorecase                                               " case-insensitive search
+set incsearch                                                " search as you type
+set laststatus=2                                             " always show statusline
+set list                                                     " show trailing whitespace
+set listchars=tab:▸\ ,trail:▫
+set number                                                   " show line numbers
+set ruler                                                    " show where you are
+set scrolloff=3                                              " show context above/below cursorline
+set shiftwidth=2                                             " normal mode indentation commands use 2 spaces
+set showcmd
+set smartcase                                                " case-sensitive search if any caps
+set softtabstop=2                                            " insert mode tab and backspace use 2 spaces
+set tabstop=8                                                " actual tabs occupy 8 characters
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+set wildmenu                                                 " show a navigable menu for tab completion
+set wildmode=longest,list,full
 
 "--------------------------------------------------------------------
 "  Ack Vim config
 "--------------------------------------------------------------------
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'jsx': ['eslint'],
-\}
-
-let g:ale_lint_on_enter = 0
-let g:ale_open_list = 0
-let g:ale_keep_list_window_open = 0
-let g:ale_fix_on_save = 0
-let g:ale_sign_error = emoji#for('x')
-let g:ale_sign_warning = emoji#for('thumbsdown')
-let g:airline#extensions#ale#enabled = 1
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-
+"--------------------------------------------------------------------
+"  Ale config
+"--------------------------------------------------------------------
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \   'jsx': ['eslint'],
+" \}
+"
+" let g:ale_lint_on_enter = 0
+" let g:ale_open_list = 0
+" let g:ale_keep_list_window_open = 0
+" let g:ale_fix_on_save = 0
+" let g:ale_sign_error = emoji#for('x')
+" let g:ale_sign_warning = emoji#for('thumbsdown')
+" let g:airline#extensions#ale#enabled = 1
+" highlight clear ALEErrorSign
+" highlight clear ALEWarningSign
+"
+" let g:javascript_plugin_flow = 1
+" let g:flow#autoclose = 1
+" let g:flow#enable = 1
+" let g:flow#showquickfix = 0
 
 
 "--------------------------------------------------------------------
@@ -275,9 +216,7 @@ set path+=**
 "--------------------------------------------------------------------
 "  Key binding
 "--------------------------------------------------------------------
-
-nnoremap <c-p> :CtrlP<CR>                 
-
+nnoremap <c-p> :CtrlP<CR>
 
 if !has('nvim')
   set ttymouse=xterm2
@@ -287,12 +226,22 @@ if has('nvim')
   tnoremap <Esc> <C-\><C-n>
 endif
 
-" set term=screen-256color
-set t_Co=256
-
 "" Configure ejs syntax highlight
 " au BufNewFile,BufRead *.ejs set filetype=html
 "
+let g:indent_guides_auto_colors = 0
+
+function! TYPESCRIPTSET()
+  let g:typescript_indent_disable = 1
+endfunction
+
+let g:jsx_ext_required = 0
+
+function! GOSET()
+  " format with goimports instead of gofmt
+  let g:go_fmt_command = "goimports"
+endfunction
+
 " Disable ~ when inside tmux, as Ctrl + PageUp/Down are translated to 5~
 if &term =~ '^screen'
   map ~ <Nop>
@@ -305,38 +254,7 @@ endif
 
 function! CPPSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=c++11\ -O2\ -o\ %<.out\ %;fi;fi
-  set cindent
-  set nowrap
 endfunction
-
-function! VIMSET()
-  set tabstop=2
-  set shiftwidth=2
-  set expandtab 
-endfunction
-
-function! TYPESCRIPTSET()
-  let g:typescript_indent_disable = 1
-endfunction
-
-let g:jsx_ext_required = 0
-
-function! JAVASCRIPTSET() 
-  set tabstop=2
-  set shiftwidth=2
-  set expandtab 
-  "Syntax highlight htmlcss
-endfunction
-
-function! GOSET()
-  " format with goimports instead of gofmt
-  let g:go_fmt_command = "goimports"
-endfunction
-
-let g:javascript_plugin_flow = 1
-let g:flow#autoclose = 1
-let g:flow#enable = 1
-let g:flow#showquickfix = 1
 
 let g:mta_filetypes = {
       \'javascript.jsx': 1,
@@ -345,9 +263,6 @@ let g:mta_filetypes = {
       \ 'xml' : 1,
       \ 'jinja' : 1,
       \}
-if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
-endif
 
 "Over write prettier rules
 let g:prettier#config#bracket_spacing = 'true'
@@ -357,24 +272,11 @@ let g:prettier#config#bracket_spacing = 'true'
 let g:mta_use_matchparen_group = 1
 let g:mta_set_default_matchtag_color = 0
 hi MatchParen ctermfg=white ctermbg=lightblue guifg=white guibg=lightblue
-" set guifont=Menlo\ 16
 
-
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=0\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-" let g:python_host_prog  = '/usr/bin/python'
 "--------------------------------------------------------------------
 " Load configurations for each file types
 "--------------------------------------------------------------------
 autocmd FileType cc         call CPPSET()
 autocmd FileType cpp        call CPPSET()
-autocmd FileType vim				call VIMSET()
 autocmd FileType typescript call TYPESCRIPTSET()
-autocmd FileType javascript call JAVASCRIPTSET()
 autocmd FileType go					call GOSET()
